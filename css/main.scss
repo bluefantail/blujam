@@ -37,7 +37,9 @@ html,body{
 	margin: 0;
 	padding: 0;
 }
-body{
+body,
+form,
+input{
 	font-family: 'Roboto', sans-serif;
 }
 h1{
@@ -64,6 +66,10 @@ button{
 a{
 	text-decoration: none;
 }
+input{
+	border: none;
+	outline: none;
+}
 
 // Site
 header{
@@ -82,21 +88,21 @@ header{
 }
 #splash-container{
 	text-align: center;
-	& #splash{
+	#splash{
 		width: 100%;
 		float: left;
 		margin: 0px auto;
 		margin-bottom: 7rem; 
-		& #splash-text{
+		#splash-text{
 			padding: 2rem 2rem 2rem 4rem;
 			float: left;
-			& #splash-title{
+			#splash-title{
 				font-size: 10rem;
 				font-weight: 900;
 			}
-			& #splash-info{
+			#splash-info{
 				color: $dim-blue;
-				& p{
+				p{
 					margin: 1rem 0 1rem;
 					font-size: 2.4rem;
 					font-weight: 400;
@@ -104,7 +110,7 @@ header{
 			}
 		}
 	}
-	& button{
+	button{
 		font-size: 1.4rem;
 		background: $bright-blue;
 		color: lighten($bright-blue, 30%);
@@ -131,22 +137,25 @@ nav{
 	display: table;
 	height: 100%;
 	z-index: 7;
-	& ul{
+	ul{
 		display: table-cell;
 		vertical-align: middle;
 		list-style: none;
 		padding: 0;
 		margin: 0;
-		& li{
-			& a{
+		li{
+			a{
 				color: darken($bright-blue, 20%);
-				font-size: 1.2rem;
-				padding: 0.5rem;
+				font-size: 1.1rem;
+				padding: 0.5rem 1rem 0.5rem 1rem;
+				margin: 0 0 1rem 0;
 				float: left;
 				@include animate;
-				&:hover{
-					color: lighten($bright-blue, 20%);
-				}
+			}
+			a.active,
+			a:hover{
+				background: $dark-blue;
+				color: lighten($bright-blue, 20%);
 			}
 		}
 	}
@@ -168,12 +177,36 @@ section{
 section#about{
 	background: #000;
 	color: #eee;
-	& p.feature{
+	p.feature{
 		color: #9a9a9a;
 	}
 }
 section#enter{
 	background: #fff;
+	form{
+		input{
+			box-sizing: border-box;
+			margin: 0 0 1rem 0;
+			background: #eee;
+			font-weight: 300;
+			font-size: 1.5rem;
+			padding: 1.8rem;
+			width: 100%;
+			@include animate;
+		}
+		input[type=submit]{
+			padding: 1.5rem 2.5rem 1.5rem 2.5rem;
+			color: lighten($bright-blue, 30%);
+			background: $bright-blue;
+			cursor: pointer;
+			float: right;
+			width: auto;
+			&:hover{
+				background: lighten($bright-blue, 20%);
+				color: #fff;
+			}
+		}
+	}
 }
 section#faq{
 	background: #000;

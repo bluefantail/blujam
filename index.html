@@ -1,13 +1,13 @@
 ---
 layout: default
 ---
-<header>
+<header id="home">
   <nav>
-    <ul>
-      <li><a href="#" class="active">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#enter">Enter</a></li>
-      <li><a href="#faq">FAQ</a></li>
+    <ul data-gumshoe>
+      <li><a data-scroll href="#home" class="active">Home</a></li>
+      <li><a data-scroll href="#about">About</a></li>
+      <li><a data-scroll href="#enter">Enter</a></li>
+      <li><a data-scroll href="#faq">FAQ</a></li>
     </ul>
   </nav>
   <div class="container table">
@@ -22,7 +22,7 @@ layout: default
           </div>
         </div>
       </div>
-      <button>Enter Team</button>
+      <a data-scroll class="button" href ="#enter">Enter Team</a>
     </div>
   </div>
 </header>

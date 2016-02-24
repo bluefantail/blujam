@@ -38,9 +38,11 @@ input{
 }
 h1{
 	font-family: 'PT Serif', serif;
+	font-family: 'Ceviche One', cursive;
 	color: $bright-blue;
 	font-weight: 400;
-	font-size: 3.8rem;
+	font-size: 5rem;
+	letter-spacing: 0.1rem;
 }
 p{
 	text-align: justify;
@@ -49,7 +51,7 @@ p{
 	font-weight: 300;
 }
 p.feature{
-	font-family: 'PT Serif', serif;
+	// font-family: 'PT Serif', serif;
 	font-size: 2.2rem;
 	padding: 1.5rem 0 1.5rem 0;
 }
@@ -92,13 +94,15 @@ header{
 			padding: 2rem 2rem 2rem 4rem;
 			float: left;
 			#splash-title{
-				font-size: 10rem;
+				font-size: 12rem;
 				font-weight: 900;
+				font-family: 'Ceviche One', cursive;
+				letter-spacing: 2px;
 			}
 			#splash-info{
 				color: $dim-blue;
 				p{
-					margin: 1rem 0 1rem;
+					margin: 1rem 0 1rem 1.5rem;
 					font-size: 2.4rem;
 					font-weight: 400;
 				}
@@ -167,7 +171,7 @@ section{
 	position: relative;
 	width: 100%;
 	float: left;
-	padding: 4rem 0 10rem 0;
+	padding: 2rem 0 10rem 0;
 }
 
 section#about{
@@ -270,7 +274,7 @@ section#faq{
 		font-size: 1rem;
 		left: 0;
 		padding: 0 0.6rem 0 0.6rem;
-		background: $bright-blue;
+		background: darken($bright-blue, 5%);
 		border-radius: 1px;
 	}
 	p:nth-child(odd) {

@@ -78,10 +78,19 @@ input{
 		font-size: 85%;
 	}
 }
-@media(max-width: 800px){
+@media(max-width: $column-break){
 	html,
 	body{
 		font-size: 80%;
+	}
+	h1{
+		font-size: 4rem;
+	}
+	p{
+		font-size: 1.4rem;
+	}
+	p.feature{
+		font-size: 1.5rem;
 	}
 }
 @media(max-width: 600px){
@@ -130,7 +139,9 @@ header{
 		width: 100%;
 		float: left;
 		margin: 0px auto;
-		margin-bottom: 7rem; 
+		margin-bottom: 7rem;
+		padding-left: 10%; // leave space for nav
+		box-sizing: border-box;  
 		@include animate;
 		#splash-text{
 			text-align: left;
@@ -186,9 +197,10 @@ header{
 	float: left;
 	@include animate;
 }
-@media(max-width: 1300px){
+@media(max-width: 1200px){
 	#splash-container{
 		#splash{
+			padding-left: 0; // remove space for nav
 			#splash-text{
 				#splash-title{
 					font-size: 10rem
@@ -253,6 +265,7 @@ nav{
 	display: table;
 	height: 100%;
 	z-index: 7;
+	@include animate;
 	ul{
 		display: table-cell;
 		vertical-align: middle;
@@ -276,6 +289,11 @@ nav{
 		}
 	}
 }
+@media(max-width: 1200px){
+	nav{
+		margin-left: -150px;
+	}
+}
 
 #sections{
 	position: absolute;
@@ -294,7 +312,11 @@ section{
 	float: left;
 	padding: 2rem 0 10rem 0;
 }
-
+@media(max-width: 1000px){
+	section{
+		padding: 1rem 0 2rem 0;
+	}
+}
 section#about{
 	background: #000;
 	overflow: hidden;

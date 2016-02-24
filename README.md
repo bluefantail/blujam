@@ -10,7 +10,7 @@ Make sure you have a working version of Ruby installed, with the Bundler gem.
 Clone blujm and navigate to the folder:
 
 ```
-git clone https://github.com/bluefantail/bluejm.git
+git clone https://github.com/bluefantail/blujm.git
 cd blujm
 ```
 

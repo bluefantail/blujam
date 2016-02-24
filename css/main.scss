@@ -11,6 +11,7 @@
 $dark-blue: #001428;
 $dim-blue: #446b8c;
 $bright-blue: #0281ff;
+$grey: #9a9a9a;
 
 
 @mixin animate($duration: 0.2s){		
@@ -182,7 +183,35 @@ section#about{
 	position: relative;
 	color: #eee;
 	p.feature{
-		color: #9a9a9a;
+		color: $grey;
+	}
+	ul{
+		$spacing: 4rem;
+		list-style: none;
+		margin: 0;
+		padding: 0 $spacing 0 $spacing; 
+		box-sizing: border-box;
+		margin-bottom: $spacing;
+		color: $grey;
+		position: relative;
+		li{
+			font-size: 1.6rem;
+			font-weight: 300;
+			line-height: 150%;
+			margin: 0 0 $spacing*.3;
+			&:before{
+				content: "";
+				width: 1rem;
+				height: 1rem;
+				background: $bright-blue;
+				float: left;
+				position: absolute;
+				line-height: 150%;
+				left: 1rem;
+				margin-top: 0.7rem;
+				border-radius: 1px;
+			}
+		}
 	}
 }
 section#about:before {
@@ -207,8 +236,8 @@ section#enter{
 			margin: 0 0 1rem 0;
 			background: #eee;
 			font-weight: 300;
-			font-size: 1.5rem;
-			padding: 1.8rem;
+			font-size: 1.4rem;
+			padding: 1.2rem;
 			width: 100%;
 			@include animate;
 		}
@@ -229,4 +258,37 @@ section#enter{
 section#faq{
 	background: #000;
 	color: #eee;
+	$spacing: 4rem;
+	#questions{
+		position: relative;
+	}
+	p{
+		padding-left: $spacing;
+		box-sizing: border-box;
+		font-size: 1.2rem;
+	}
+	p:before{
+		position: absolute;
+		font-weight: 700;
+		color: #fff;
+		font-size: 1rem;
+		left: 0;
+		padding: 0 0.6rem 0 0.6rem;
+		background: $bright-blue;
+		border-radius: 1px;
+	}
+	p:nth-child(odd) {
+		color: $bright-blue;
+		font-weight: 400;
+		&:before{
+			content: "Q";
+		}
+	}
+	p:nth-child(even) {
+		margin-bottom: $spacing*.7; 
+		&:before{
+			content: "A";
+		}
+	}
+
 }

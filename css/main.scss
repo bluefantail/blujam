@@ -117,6 +117,13 @@ header{
 		padding: 0 $small-padding/2 0 $small-padding/2;
 	}
 }
+@media(max-width: $column-break){
+	header{
+		height: auto;
+		position: relative;
+		padding: 5rem 0 8rem 0;
+	}
+}
 #splash-container{
 	text-align: center;
 	#splash{
@@ -274,6 +281,11 @@ nav{
 	position: absolute;
 	width: 100%;
 	top: 100%;
+}
+@media(max-width: $column-break){
+	#sections{
+		position: relative;
+	}
 }
 section{
 	box-sizing: border-box;

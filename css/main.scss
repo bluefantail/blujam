@@ -6,6 +6,10 @@ $dim-blue: #446b8c;
 $bright-blue: #0281ff;
 $grey: #9a9a9a;
 
+// Maximum site width
+$site-width: 1200px;
+$small-padding: 4rem;
+
 
 @mixin animate($duration: 0.2s){		
 	// Animates all properties of an object 					
@@ -67,6 +71,24 @@ input{
 	border: none;
 	outline: none;
 }
+@media(max-width: 1000px){
+	html,
+	body{
+		font-size: 85%;
+	}
+}
+@media(max-width: 800px){
+	html,
+	body{
+		font-size: 80%;
+	}
+}
+@media(max-width: 600px){
+	html,
+	body{
+		font-size: 76%;
+	}
+}
 
 // Site
 header{
@@ -78,10 +100,21 @@ header{
 	color: #fff;
 }
 .container{
+	box-sizing: border-box;
 	max-width: 1200px;
 	margin: 0px auto;
+	min-height: 100%;
 	width: 100%;
-	height: 100%;
+}
+@media(max-width: 1300px){
+	.container{
+		padding: 0 $small-padding 0 $small-padding;
+	}
+}
+@media(max-width: 450px){
+	.container{
+		padding: 0 $small-padding/2 0 $small-padding/2;
+	}
 }
 #splash-container{
 	text-align: center;
@@ -90,21 +123,28 @@ header{
 		float: left;
 		margin: 0px auto;
 		margin-bottom: 7rem; 
+		@include animate;
 		#splash-text{
-			padding: 2rem 2rem 2rem 4rem;
 			float: left;
+			@include animate;
 			#splash-title{
 				font-size: 12rem;
+				width: 100%;
+				float: left;
+				text-align: left;
 				font-weight: 900;
 				font-family: 'Ceviche One', cursive;
 				letter-spacing: 2px;
+				@include animate;
 			}
 			#splash-info{
 				color: $dim-blue;
+				@include animate;
 				p{
 					margin: 1rem 0 1rem 1.5rem;
 					font-size: 2.4rem;
 					font-weight: 400;
+					@include animate;
 				}
 			}
 		}
@@ -125,10 +165,48 @@ header{
 }
 #logo{
 	background: url('/images/logo.svg') no-repeat center center;
+	box-sizing: border-box;
 	background-size: contain;
 	height: 450px;
-	width: 500px;
+	// width: 500px;
 	float: left;
+	@include animate;
+}
+@media(max-width: 1300px){
+	#splash-container{
+		#splash{
+			#splash-text{
+				#splash-title{
+					font-size: 9rem
+				}
+				#splash-info{
+					p{
+						font-size: 2rem;
+					}
+				}
+			}
+		}
+	}
+	#logo{
+	}
+}
+@media(max-width: 1000px){
+	#splash-container{
+		#splash{
+			#splash-text{
+				#splash-title{
+					font-size: 9rem
+				}
+				#splash-info{
+					p{
+						font-size: 2rem;
+					}
+				}
+			}
+		}
+	}
+	#logo{
+	}
 }
 
 nav{
@@ -307,9 +385,7 @@ section#faq{
   box-sizing: border-box; 
 }
 /* For devices larger than 550px */
-@media (min-width: 550px) {
-  .container {
-    width: 80%; }
+@media (min-width: 750px) {
   .column,
   .columns {
     margin-left: 4%; }

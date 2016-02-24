@@ -9,6 +9,7 @@ $grey: #9a9a9a;
 // Maximum site width
 $site-width: 1200px;
 $small-padding: 4rem;
+$column-break: 750px;
 
 
 @mixin animate($duration: 0.2s){		
@@ -125,25 +126,32 @@ header{
 		margin-bottom: 7rem; 
 		@include animate;
 		#splash-text{
+			text-align: left;
 			float: left;
 			@include animate;
 			#splash-title{
 				font-size: 12rem;
 				width: 100%;
 				float: left;
-				text-align: left;
 				font-weight: 900;
 				font-family: 'Ceviche One', cursive;
 				letter-spacing: 2px;
 				@include animate;
 			}
 			#splash-info{
+				float: left;
+				width: 100%;
+				text-align: inherit;
 				color: $dim-blue;
+				box-sizing: border-box;
+				padding: 0 0 0 1.5rem;
 				@include animate;
 				p{
-					margin: 1rem 0 1rem 1.5rem;
+					text-align: inherit;
+					margin: 1rem 0 1rem 0;
 					font-size: 2.4rem;
 					font-weight: 400;
+					width: 100%;
 					@include animate;
 				}
 			}
@@ -167,8 +175,7 @@ header{
 	background: url('/images/logo.svg') no-repeat center center;
 	box-sizing: border-box;
 	background-size: contain;
-	height: 450px;
-	// width: 500px;
+	padding-bottom: 35%;
 	float: left;
 	@include animate;
 }
@@ -177,17 +184,15 @@ header{
 		#splash{
 			#splash-text{
 				#splash-title{
-					font-size: 9rem
+					font-size: 10rem
 				}
 				#splash-info{
 					p{
-						font-size: 2rem;
+						font-size: 2.2rem;
 					}
 				}
 			}
 		}
-	}
-	#logo{
 	}
 }
 @media(max-width: 1000px){
@@ -195,7 +200,7 @@ header{
 		#splash{
 			#splash-text{
 				#splash-title{
-					font-size: 9rem
+					font-size: 10rem
 				}
 				#splash-info{
 					p{
@@ -205,7 +210,33 @@ header{
 			}
 		}
 	}
+}
+@media(max-width: $column-break){
+	#splash-container{
+		#splash{
+			margin-bottom: 3rem;
+			#splash-text{
+				text-align: center;
+				#splash-title{
+					font-size: 9rem
+				}
+				#splash-info{
+					padding: 0;
+					p{
+						font-size: 2rem;
+					}
+				}
+			}
+		}
+	}
 	#logo{
+		padding-bottom: 45%;
+		margin-bottom: 2rem;
+	}
+}
+@media(max-width: 500px){
+	#logo{
+		padding-bottom: 65%;
 	}
 }
 
@@ -385,7 +416,7 @@ section#faq{
   box-sizing: border-box; 
 }
 /* For devices larger than 550px */
-@media (min-width: 750px) {
+@media (min-width: $column-break) {
   .column,
   .columns {
     margin-left: 4%; }

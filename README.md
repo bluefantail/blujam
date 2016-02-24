@@ -3,8 +3,6 @@ Website for Blujm game jam
 
 Site runs in jekyll, gemfile containing jekyll inlcuded. 
 
-[View Demo](https://bluefantail.github.io/snakejs)
-
 # Installation
 
 Make sure you have a working version of Ruby installed, with the Bundler gem.

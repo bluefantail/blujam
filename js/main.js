@@ -24,6 +24,33 @@ function handle_click(event) {
 	message(playerNum);
 	document.querySelector('#team-submit').removeAttribute('disabled');
 }
+// Handle team submissions (adapted from cloudstitch 'Magic Forms' examples)
+function handle_entry(event) {
+	console.log('sdlkfghjdsfglk');
+	event.stopPropagation();
+	event.preventDefault();
+	var entryForm = document.getElementsByClassName('magic-form')[0];	   
+	var xhr = new XMLHttpRequest();
+	xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action')); 
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+	xhr.onload = function() {
+		console.log("Form Sent:");
+		console.log("Response Code: " + xhr.status + "\nResponse Text: " + xhr.responseText);
+		entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
+		entryForm.setAttribute('style', 'display: none');
+	};
+	
+	var inputs = entryForm.getElementsByTagName('INPUT');
+	var pairs = [];
+	
+	for (var i = 0; i < inputs.length; i++) {
+		pairs.push(encodeURI(inputs[i].getAttribute('name')) + '=' + encodeURI(inputs[i].value));
+	}  
+	
+	xhr.send(pairs.join('&'));        
+}
 // DOM Manipulation
 function set_players(playerCount) {
 	var count = playerCount;
@@ -70,40 +97,10 @@ function message(playerCount){
 Array.prototype.forEach.call(playerElements, function(element) {
 	element.addEventListener("click", handle_click);
 })
+
+document.querySelector('.magic-form').addEventListener('submit', handle_entry);
 // END LISTENERS
 
-// Handle team submissions (adapted from cloudstitch 'Magic Forms' examples)
-var sendForm = function() {
-	var entryForm = document.getElementsByClassName('magic-form')[0];	   
-	var xhr = new XMLHttpRequest();
-	xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action')); 
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-	xhr.onload = function() {
-		console.log("Form Sent:");
-		console.log("Response Code: " + xhr.status + "\nResponse Text: " + xhr.responseText);
-		entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
-		entryForm.setAttribute('style', 'display: none');
-	};
-	
-	var inputs = entryForm.getElementsByTagName('INPUT');
-	var pairs = [];
-	
-	for (var i = 0; i < inputs.length; i++) {
-		pairs.push(encodeURI(inputs[i].getAttribute('name')) + '=' + encodeURI(inputs[i].value));
-	}  
-	
-	xhr.send(pairs.join('&'));        
-}
-document.getElementById('team-submit').addEventListener('submit', function(e) {
-	// e.stopPropagation();
-	e.preventDefault();
-	sendForm();
-	return false;
-}, true);
-
-// Contact Form
 
 
 // Logs

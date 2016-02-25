@@ -4,7 +4,7 @@ working_directory "/apps/blujm/current"
 
 # Unicorn PID file location
 # pid "/path/to/pids/unicorn.pid"
-pid "/apps/blujm/shared/unicorn.pid"
+pid "/apps/blujm/shared/tmp/pids/unicorn.pid"
 
 # Path to logs
 # stderr_path "/path/to/log/unicorn.log"

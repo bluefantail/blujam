@@ -56,8 +56,8 @@ function handle_contact(event){
 
 	// Only jquery dep
 	$.ajax({
-    	url: "//formspree.io/mattfannin@acidic.co.nz", 
-    	// url: "//formspree.io/joshua.scott.132@gmail.com", 
+    	// url: "//formspree.io/mattfannin@acidic.co.nz", 
+    	url: "//formspree.io/joshua.scott.132@gmail.com", 
     	method: "POST",
     	data: $('#contact-form').serialize(),
     	dataType: "json"

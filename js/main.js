@@ -10,6 +10,7 @@ smoothScroll.init({
 // Forms
 var playerElements = document.querySelectorAll('#player-select>label');
 var	players = document.querySelector('#players');
+var teamMessage = document.querySelector('#team-message');
 
 // FUNCTIONS
 // Events
@@ -18,6 +19,7 @@ function handle_click(event) {
 	console.log(playerNum + " players selected");
 	set_players(playerNum);
 	insert_player_feilds(playerNum);
+	message(playerNum);
 }
 // DOM Manipulation
 function set_players(playerCount) {
@@ -37,6 +39,27 @@ function insert_player_feilds(playerCount){
 		players.insertAdjacentHTML('afterbegin', '<input type="text" placeholder="Name (Player ' + count + ')">');
 		count -= 1; 
 	} while (count > 0);
+}
+function message(playerCount){
+	var message = "";
+	switch (playerCount) {
+		case '1':
+			message = "<div>Lone Wolf.</div>";
+			break;
+		case '2':
+			message = "<div>Dynamic Duo.</div>";
+			break;
+		case '3':
+			message = "<div>Musketeers.</div>";
+			break;
+		case '4':
+			message = "<div>Camping!</div>";
+			break;
+		case '5':
+			message = "<div>Perfect Prime.</div>";
+			break;
+	}
+	teamMessage.innerHTML = message;
 }
 // END FUNCTIONS
 

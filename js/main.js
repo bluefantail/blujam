@@ -26,7 +26,6 @@ function handle_click(event) {
 }
 // Handle team submissions (adapted from cloudstitch 'Magic Forms' examples)
 function handle_entry(event) {
-	console.log('sdlkfghjdsfglk');
 	event.stopPropagation();
 	event.preventDefault();
 	var entryForm = document.getElementsByClassName('magic-form')[0];	   
@@ -50,6 +49,17 @@ function handle_entry(event) {
 	}  
 	
 	xhr.send(pairs.join('&'));        
+}
+function handle_contact(event){
+	event.stopPropagation();
+	event.preventDefault();
+
+	$.ajax({
+    	url: "//formspree.io/mattfannin@acidic.co.nz", 
+    	method: "POST",
+    	data: $('#contact-form').serialize(),
+    	dataType: "json"
+	});	
 }
 // DOM Manipulation
 function set_players(playerCount) {
@@ -97,8 +107,8 @@ function message(playerCount){
 Array.prototype.forEach.call(playerElements, function(element) {
 	element.addEventListener("click", handle_click);
 })
-
 document.querySelector('.magic-form').addEventListener('submit', handle_entry);
+document.querySelector('#contact-form').addEventListener('submit', handle_contact);
 // END LISTENERS
 
 

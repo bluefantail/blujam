@@ -9,8 +9,7 @@
 title: Blujm
 email: 
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml.
+  BluJm is a 48-hour game making competition with some very unique rules.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://blujm.nz" # the base hostname & protocol for your site
 twitter_username: blujm

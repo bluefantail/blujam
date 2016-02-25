@@ -453,6 +453,7 @@ section#contact{
 		background: $dark-blue;
 		color: $dim-blue;
 		&:focus{
+			background: lighten($dark-blue, 10%);
 			color: #fff;
 		}
 	}

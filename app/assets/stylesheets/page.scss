@@ -14,16 +14,15 @@ $small-padding: 4rem;
 $column-break: 850px;
 $nav-gap: 5%;
 
-
-@mixin animate($duration: 0.2s){
-	// Animates all properties of an object
+@mixin animate($duration: 0.2s){		
+	// Animates all properties of an object 					
 	-webkit-transition:
 		all $duration ease-in-out;
-	-moz-transition:
+	-moz-transition: 
 		all $duration ease-in-out;
-	-o-transition:
+	-o-transition: 
 		all $duration ease-in-out;
-	transition:
+	transition: 
 		all $duration ease-in-out;
 }
 .table{
@@ -86,7 +85,7 @@ textarea{
 }
 code {
     background:	#111;
-    border: 1px solid #444;
+    border: 1px solid #333;
     border-radius: 5px;
     color: $bright-blue;
     font-size: 1.1rem;
@@ -137,7 +136,7 @@ header{
 }
 @media(max-width: 1550px){
 	.container{
-		padding-left: $nav-gap; // leave space for nav
+		padding-left: $nav-gap; // leave space for nav	
 	}
 }
 @media(max-width: 1400px){
@@ -174,7 +173,7 @@ header{
 		float: left;
 		margin: 0px auto;
 		margin-bottom: 7rem;
-		box-sizing: border-box;
+		box-sizing: border-box;  
 		@include animate;
 		#splash-text{
 			text-align: left;
@@ -223,7 +222,7 @@ header{
 	}
 }
 #logo{
-	background: image-url("logo.svg") no-repeat center center;
+	background: url('logo.svg') no-repeat center center;
 	box-sizing: border-box;
 	background-size: contain;
 	padding-bottom: 35%;
@@ -306,7 +305,7 @@ nav{
 		margin: 0;
 		li{
 			float: left;
-			clear: both;
+			clear: both; 
 			a{
 				color: darken($bright-blue, 10%);
 				font-size: 1.1rem;
@@ -362,7 +361,7 @@ section#about{
 		$spacing: 4rem;
 		list-style: none;
 		margin: 0;
-		padding: 0 0 0 $spacing;
+		padding: 0 0 0 $spacing; 
 		box-sizing: border-box;
 		margin-bottom: $spacing;
 		color: $grey;
@@ -401,6 +400,7 @@ section#about{
 	section#about{
 		background-size: 1200%;
 	}
+}
 section#enter{
 	background: #fff;
 	#entry-confirmation{
@@ -442,7 +442,7 @@ section#faq{
 		}
 	}
 	p:nth-child(even) {
-		margin-bottom: $spacing*.7;
+		margin-bottom: $spacing*.7; 
 		&:before{
 			content: "A";
 		}
@@ -457,7 +457,7 @@ section#where{
 			float: left;
 			width: 100%;
 			padding-bottom: 66%;
-			background: image-url("map.png") no-repeat;
+			background: url(map.png) no-repeat;
 			background-size: cover;
 		}
 	}
@@ -476,28 +476,28 @@ section#contact{
 		}
 	}
 	input::-webkit-input-placeholder{
-		color: $placeholder-blue;
+		color: $placeholder-blue;	
 	}
 	input::-moz-placeholder{
-		color: $placeholder-blue;
+		color: $placeholder-blue;	
 	}
 	input:-ms-input-placeholder{
-		color: $placeholder-blue;
+		color: $placeholder-blue;	
 	}
 	input:-moz-placeholder{
-		color: $placeholder-blue;
+		color: $placeholder-blue;	
 	}
 	textarea::-webkit-input-placeholder{
-		color: $placeholder-blue;
+		color: $placeholder-blue;	
 	}
 	textarea::-moz-placeholder{
-		color: $placeholder-blue;
+		color: $placeholder-blue;	
 	}
 	textarea:-ms-input-placeholder{
-		color: $placeholder-blue;
+		color: $placeholder-blue;	
 	}
 	textarea:-moz-placeholder{
-		color: $placeholder-blue;
+		color: $placeholder-blue;	
 	}
 }
 
@@ -602,13 +602,13 @@ form{
 .row:after {
   content: "";
   display: table;
-  clear: both;
+  clear: both; 
 }
 .column,
 .columns {
   width: 100%;
   float: left;
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 /* For devices larger than 550px */
 @media (min-width: $column-break) {

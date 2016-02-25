@@ -25,6 +25,7 @@ layout: default
     <li><a data-scroll href="#enter">Enter</a></li>
     <li><a data-scroll href="#faq">FAQ</a></li>
     <li><a data-scroll href="#where">Where</a></li>
+    <li><a data-scroll href="#contact">Contact</a></li>
   </ul>
 </nav>
 <div id="sections">
@@ -117,8 +118,23 @@ layout: default
     <div class="container">
       <h1>Where is it?</h1>
       <p>
-        A map needs to go in here with some information on it.
+        Some info about what this map is.
       </p>
+      <div id="map-container">
+        <div id="map"></div>
+      </div>
+    </div>
+  </section>
+  <section id="contact">
+    <div class="container">
+      <h1>Got questions?</h1>
+      <form>
+        <input name="name" type="text" placeholder="Name" required>
+        <input name="email" type="email" placeholder="Email" required>
+        <input name="subject" type="text" placeholder="Subject" required>
+        <textarea name="message" placeholder="Message" required></textarea>
+        <input id="email-submit" type="submit" value="Send" >
+      </form>
     </div>
   </section>
 </div>

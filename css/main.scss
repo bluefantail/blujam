@@ -40,7 +40,8 @@ html,body{
 }
 body,
 form,
-input{
+input,
+textarea{
 	font-family: 'Roboto', sans-serif;
 }
 h1{
@@ -70,7 +71,8 @@ a{
 	text-decoration: none;
 	outline: none;
 }
-input{
+input,
+textarea{
 	border: none;
 	outline: none;
 }
@@ -383,95 +385,6 @@ section#about:before {
 }
 section#enter{
 	background: #fff;
-	form{
-		$input-spacing: 1.2rem;
-		$input-font-size: 1.2rem;
-		input{
-			box-sizing: border-box;
-			margin: 0 0 $input-spacing 0;
-			background: #eee;
-			font-weight: 300;
-			font-size: 1.2rem;
-			padding: $input-spacing;
-			width: 100%;
-			@include animate;
-		}
-		input[type=submit]{
-			padding: 1.2rem 2.2rem 1.2rem 2.2rem;
-			color: lighten($bright-blue, 30%);
-			background: $bright-blue;
-			cursor: pointer;
-			float: right;
-			clear: both;
-			width: auto;
-			font-weight: 700;
-			&:hover{
-				background: lighten($bright-blue, 20%);
-				color: #fff;
-			}
-		}
-		input[type=radio]{
-			display: none;
-		}
-		$players-input-size: 3rem;
-		#players-label{
-			height: $players-input-size;
-			padding: 0 $input-spacing 0 $input-spacing;
-			font-size: $input-font-size*0.9;
-			background: $grey;
-			display: table;
-			float: left;
-			color: #eee;
-			div{
-				display: table-cell;
-				vertical-align: middle;
-				width: 100%;
-			}
-		}
-		#player-select{
-			$light-grey: #eee;
-			margin: 0 0 $input-spacing 0;
-			float: left;
-			&:hover label{
-				background: $bright-blue;
-				color: #fff;
-			}
-			label.set{
-				background: $bright-blue;
-				color: #fff;
-			}
-			label{
-				background: $light-grey;
-				width: $players-input-size;
-				height: $players-input-size;
-				float: left;
-				text-align: center;
-				line-height: 100%;
-				display: table;
-				color: $grey;
-				div{
-					width: 100%;
-					display: table-cell;
-					vertical-align: middle;
-				}
-			}
-			label:hover ~ label{
-				background: $light-grey;
-				color: $grey;
-			}
-		}
-		#team-message{
-			height: $players-input-size;
-			float: left;
-			padding: 0 0 0 $input-spacing;
-			display: table;
-			div{
-				display: table-cell;
-				vertical-align: middle;
-			}
-		}
-
-	}
 	#entry-confirmation{
 		padding: 0 0 4rem 0;
 		float: left;
@@ -518,7 +431,150 @@ section#faq{
 	}
 
 }
+section#where{
+	#map-container{
+		width: 100%;
+		max-width: 1000px;
+		#map{
+			float: left;
+			width: 100%;
+			padding-bottom: 66%;
+			background: url(/images/map.png) no-repeat;
+			background-size: cover;
+		}
+	}
+}
+section#contact{
+	background: #000;
+	$placeholder-blue: lighten($dim-blue, 15%);
+	input:not([type="submit"]),
+	textarea,{
+		background: $dark-blue;
+		color: $dim-blue;
+		&:focus{
+			color: #fff;
+		}
+	}
+	input::-webkit-input-placeholder{
+		color: $placeholder-blue;	
+	}
+	input::-moz-placeholder{
+		color: $placeholder-blue;	
+	}
+	input:-ms-input-placeholder{
+		color: $placeholder-blue;	
+	}
+	input:-moz-placeholder{
+		color: $placeholder-blue;	
+	}
+	textarea::-webkit-input-placeholder{
+		color: $placeholder-blue;	
+	}
+	textarea::-moz-placeholder{
+		color: $placeholder-blue;	
+	}
+	textarea:-ms-input-placeholder{
+		color: $placeholder-blue;	
+	}
+	textarea:-moz-placeholder{
+		color: $placeholder-blue;	
+	}
+}
 
+form{
+	$input-spacing: 1.2rem;
+	$input-font-size: 1.2rem;
+	input,
+	textarea{
+		box-sizing: border-box;
+		margin: 0 0 $input-spacing 0;
+		background: #eee;
+		font-weight: 300;
+		font-size: 1.2rem;
+		padding: $input-spacing;
+		width: 100%;
+		@include animate;
+	}
+	textarea{
+		height: 20rem;
+		max-width: 100%;
+	}
+	input[type=submit]{
+		padding: 1.2rem 2.2rem 1.2rem 2.2rem;
+		color: lighten($bright-blue, 30%);
+		background: $bright-blue;
+		cursor: pointer;
+		float: right;
+		clear: both;
+		width: auto;
+		font-weight: 700;
+		&:hover{
+			background: lighten($bright-blue, 20%);
+			color: #fff;
+		}
+	}
+	input[type=radio]{
+		display: none;
+	}
+	$players-input-size: 3rem;
+	#players-label{
+		height: $players-input-size;
+		padding: 0 $input-spacing 0 $input-spacing;
+		font-size: $input-font-size*0.9;
+		background: $grey;
+		display: table;
+		float: left;
+		color: #eee;
+		div{
+			display: table-cell;
+			vertical-align: middle;
+			width: 100%;
+		}
+	}
+	#player-select{
+		$light-grey: #eee;
+		margin: 0 0 $input-spacing 0;
+		float: left;
+		&:hover label{
+			background: $bright-blue;
+			color: #fff;
+		}
+		label.set{
+			background: $bright-blue;
+			color: #fff;
+		}
+		label{
+			background: $light-grey;
+			width: $players-input-size;
+			height: $players-input-size;
+			float: left;
+			text-align: center;
+			line-height: 100%;
+			display: table;
+			color: $grey;
+			div{
+				width: 100%;
+				display: table-cell;
+				vertical-align: middle;
+			}
+		}
+		label:hover ~ label{
+			background: $light-grey;
+			color: $grey;
+		}
+	}
+	#team-message{
+		height: $players-input-size;
+		float: left;
+		padding: 0 0 0 $input-spacing;
+		display: table;
+		div{
+			display: table-cell;
+			vertical-align: middle;
+		}
+	}
+
+}
 
 // Column magic from Skeleton.css
 .row:after {

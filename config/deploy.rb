@@ -5,7 +5,8 @@ set :application, 'blujm'
 set :repo_url, 'git@github.com:bluefantail/blujm.git'
 
 # Default branch is :master
-set :branch, 'rails'
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, "rails"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/apps/blujm'
@@ -22,11 +23,16 @@ set :deploy_to, '/apps/blujm'
 # Default value for :pty is false
 # set :pty, true
 
+set :rbenv_ruby, "2.3.0"
+set :rbenv_type, :system
+
+set :assets_roles, [:web, :app]
+
 # Default value for :linked_files is []
-# set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 # Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -34,19 +40,15 @@ set :deploy_to, '/apps/blujm'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :rbenv_type, :system
-set :rbenv_ruby, '2.3.0'
-
 namespace :deploy do
+
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
     end
   end
-  
-after 'deploy:publishing', 'deploy:restart'
-  namespace :deploy do
-    task :restart do
-      invoke 'unicorn:restart'
-    end
-  end
+
 end

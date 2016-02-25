@@ -448,6 +448,7 @@ section#where{
 section#contact{
 	background: #000;
 	$placeholder-blue: lighten($dim-blue, 15%);
+	color: lighten($dim-blue, 15%);
 	input:not([type="submit"]),
 	textarea,{
 		background: $dark-blue;
@@ -498,7 +499,7 @@ form{
 		@include animate;
 	}
 	textarea{
-		height: 15rem;
+		height: 12rem;
 		max-width: 100%;
 	}
 	input[type=submit]{

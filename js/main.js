@@ -36,7 +36,7 @@ function insert_player_feilds(playerCount){
 	var	count = playerCount;
 	players.innerHTML = "";
 	do {
-		players.insertAdjacentHTML('afterbegin', '<input type="text" placeholder="Name (Player ' + count + ')">');
+		players.insertAdjacentHTML('afterbegin', '<input type="text" name="Player ' + count + '" placeholder="Name (Player ' + count + ')">');
 		count -= 1; 
 	} while (count > 0);
 }

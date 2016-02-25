@@ -38,10 +38,15 @@ set :rbenv_type, :system
 set :rbenv_ruby, '2.3.0'
 
 namespace :deploy do
-
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
     end
   end
-
+  
+after 'deploy:publishing', 'deploy:restart'
+  namespace :deploy do
+    task :restart do
+      invoke 'unicorn:restart'
+    end
+  end
 end

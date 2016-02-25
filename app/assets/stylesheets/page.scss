@@ -53,6 +53,7 @@ h1{
 	font-weight: 400;
 	font-size: 5rem;
 	letter-spacing: 0.1rem;
+	margin: 1.8rem 0 1.8rem 0;
 }
 p{
 	text-align: justify;
@@ -62,7 +63,8 @@ p{
 }
 p.feature{
 	font-size: 2.2rem;
-	padding: 1.5rem 0 1.5rem 0;
+	padding: 0 0 2rem 0;
+	margin: 0;
 }
 button{
 	border: none;
@@ -133,6 +135,7 @@ header{
 	min-height: 100%;
 	width: 100%;
 	overflow-x: hidden;
+	position: relative;
 	@include animate;
 }
 @media(max-width: 1550px){
@@ -456,6 +459,7 @@ section#where{
 	#map-container{
 		width: 100%;
 		max-width: 1000px;
+		margin-top: 4rem;
 		#map{
 			float: left;
 			width: 100%;
@@ -501,6 +505,22 @@ section#contact{
 	}
 	textarea:-moz-placeholder{
 		color: $placeholder-blue;	
+	}
+	#contact-message{
+		box-sizing: border-box;
+		background-color: #000;
+		position: absolute;
+		text-align: center;
+		font-size: 2.8rem;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		padding: 25% 1rem 0 1rem;
+	}
+	@media(max-width: $column-break){
+		#contact-message{
+			font-size: 2.2rem;
+		}
 	}
 }
 

@@ -56,11 +56,14 @@ function handle_contact(event){
 
 	// Only jquery dep
 	$.ajax({
-    	url: "//formspree.io/joshua.scott.132@gmail.com", 
+    	url: "//formspree.io/mattfannin@acidic.co.nz", 
+    	// url: "//formspree.io/joshua.scott.132@gmail.com", 
     	method: "POST",
     	data: $('#contact-form').serialize(),
     	dataType: "json"
 	});	
+
+	document.querySelector('#contact').insertAdjacentHTML('beforeend', '<div id="contact-message"><div>Thanks! A human will get back to you shortly.</div></div>')
 }
 // DOM Manipulation
 function set_players(playerCount) {
@@ -106,7 +109,7 @@ function message(playerCount){
 
 // LISTENERS
 Array.prototype.forEach.call(playerElements, function(element) {
-	element.addEventListener("click", handle_click);
+	// element.addEventListener("click", handle_click);
 })
 
 document.querySelector('.magic-form').addEventListener('submit', handle_entry);

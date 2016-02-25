@@ -351,7 +351,8 @@ section{
 	}
 }
 section#about{
-	background: url('bg.svg') no-repeat #000;
+	background: url('bg.svg') no-repeat  center center #000;
+	background-size: 300%;
 	color: #eee;
 	p.feature{
 		color: $grey;
@@ -385,20 +386,21 @@ section#about{
 		}
 	}
 }
-// section#about:before {
-//     content: ' ';
-//     display: block;
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     width: 100%;
-//     height: 100%;
-//     z-index: 1;
-//     opacity: 0.15;
-//     background: url('logo.svg') no-repeat center center;
-//     background-position: 75% 16%;
-//     background-size: 500%;
-// }
+@media(max-width: 1000px){
+	section#about{
+		background-size: 400%;
+	}
+}
+@media(max-width: 750px){
+	section#about{
+		background-size: 500%;
+	}
+}
+@media(max-width: 600px){
+	section#about{
+		background-size: 1200%;
+	}
+}
 section#enter{
 	background: #fff;
 	#entry-confirmation{

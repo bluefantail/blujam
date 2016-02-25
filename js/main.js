@@ -96,8 +96,8 @@ var sendForm = function() {
 	
 	xhr.send(pairs.join('&'));        
 }
-document.getElementById('team-submit').addEventListener('click', function(e) {
-	e.stopPropagation();
+document.getElementById('team-submit').addEventListener('submit', function(e) {
+	// e.stopPropagation();
 	e.preventDefault();
 	sendForm();
 	return false;

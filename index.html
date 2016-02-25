@@ -80,16 +80,16 @@ layout: default
   <section id="enter">
     <div class="container">
       <h1>Enter a team</h1>
-      <form>
-        <input type="text" placeholder="Team Name">
-        <input type="email" placeholder="Email Address">
+      <form method="POST" action="//api.cloudstitch.com/bluefantail/magic-form/datasources/sheet" class="magic-form">
+        <input type="text" name="Team Name" placeholder="Team Name" required="">
+        <input type="email" name="Email" placeholder="Email Address" required="">
         <div id="players-label"><div>Players</div></div>
         <div id="player-select">
-          <input type="radio" id="player-1" name="player-selection" value="1">
-          <input type="radio" id="player-2" name="player-selection" value="2">
-          <input type="radio" id="player-3" name="player-selection" value="1">
-          <input type="radio" id="player-4" name="player-selection" value="4">
-          <input type="radio" id="player-5" name="player-selection" value="5">
+          <input type="radio" id="player-1" name="player-count" value="1">
+          <input type="radio" id="player-2" name="player-count" value="2">
+          <input type="radio" id="player-3" name="player-count" value="1">
+          <input type="radio" id="player-4" name="player-count" value="4">
+          <input type="radio" id="player-5" name="player-count" value="5">
           <label for="player-1" id="1"><div>1</div></label>
           <label for="player-2" id="2"><div>2</div></label>
           <label for="player-3" id="3"><div>3</div></label>
@@ -99,7 +99,7 @@ layout: default
         <div id="team-message"></div>
         <div id="players">
         </div>
-        <input type="submit" value="Enter" >
+        <input id="team-submit" type="submit" value="Enter" >
       </form>
     </div>
   </section>

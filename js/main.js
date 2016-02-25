@@ -36,7 +36,7 @@ function insert_player_feilds(playerCount){
 	var	count = playerCount;
 	players.innerHTML = "";
 	do {
-		players.insertAdjacentHTML('afterbegin', '<input type="text" name="Player ' + count + '" placeholder="Name (Player ' + count + ')">');
+		players.insertAdjacentHTML('afterbegin', '<input type="text" name="Player ' + count + '" placeholder="Name (Player ' + count + ')" required>');
 		count -= 1; 
 	} while (count > 0);
 }
@@ -68,6 +68,38 @@ Array.prototype.forEach.call(playerElements, function(element) {
 	element.addEventListener("click", handle_click);
 })
 // END LISTENERS
+
+// Handle team submissions (adapted from cloudstitch 'Magic Forms' examples)
+var sendForm = function() {
+	var entryForm = document.getElementsByClassName('magic-form')[0];	   
+	var xhr = new XMLHttpRequest();
+	xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action')); 
+	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+	xhr.onload = function() {
+		console.log("Form Sent:");
+		console.log("Response Code: " + xhr.status + "\nResponse Text: " + xhr.responseText);
+		entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
+		entryForm.setAttribute('style', 'display: none');
+	};
+	
+	var inputs = entryForm.getElementsByTagName('INPUT');
+	var pairs = [];
+	
+	for (var i = 0; i < inputs.length; i++) {
+		pairs.push(encodeURI(inputs[i].getAttribute('name')) + '=' + encodeURI(inputs[i].value));
+	}  
+	
+	xhr.send(pairs.join('&'));        
+}
+
+document.getElementById('team-submit').addEventListener('click', function(e) {
+	e.stopPropagation();
+	e.preventDefault();
+	sendForm();
+	return false;
+}, true);
 
 // Logs
 console.log('Forms');

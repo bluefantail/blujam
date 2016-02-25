@@ -508,10 +508,12 @@ form{
 		clear: both;
 		width: auto;
 		font-weight: 700;
-		&:hover{
-			background: lighten($bright-blue, 20%);
-			color: #fff;
-		}
+	}
+	input:disabled,
+	input:disabled:hover{
+		background: $grey;
+		color: lighten($grey, 15%);
+		cursor: normal;
 	}
 	input[type=radio]{
 		display: none;

@@ -100,7 +100,7 @@ layout: default
         <div id="team-message"></div>
         <div id="players">
         </div>
-        <input id="team-submit" type="submit" value="Enter" >
+        <input id="team-submit" type="submit" value="Enter" disabled>
       </form>
     </div>
   </section>
@@ -128,11 +128,12 @@ layout: default
   <section id="contact">
     <div class="container">
       <h1>Got questions?</h1>
-      <form>
-        <input name="name" type="text" placeholder="Name" required>
-        <input name="email" type="email" placeholder="Email" required>
-        <input name="subject" type="text" placeholder="Subject" required>
+      <form id="contact-form" action="//formspree.io/mattfannin@acidic.co.nz" method="POST">
+        <input name="Name" type="text" placeholder="Name" required>
+        <input name="_replyto" type="email" placeholder="Email" required>
+        <input name="_subject" type="text" placeholder="Subject" required>
         <textarea name="message" placeholder="Message" required></textarea>
+        <input type="text" name="_gotcha" style="display:none" />
         <input id="email-submit" type="submit" value="Send" >
       </form>
     </div>

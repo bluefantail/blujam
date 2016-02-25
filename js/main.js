@@ -12,6 +12,8 @@ var playerElements = document.querySelectorAll('#player-select>label');
 var	players = document.querySelector('#players');
 var teamMessage = document.querySelector('#team-message');
 
+var	contactForm = document.querySelector('#contact-form');
+
 // FUNCTIONS
 // Events
 function handle_click(event) {
@@ -20,6 +22,7 @@ function handle_click(event) {
 	set_players(playerNum);
 	insert_player_feilds(playerNum);
 	message(playerNum);
+	document.querySelector('#team-submit').removeAttribute('disabled');
 }
 // DOM Manipulation
 function set_players(playerCount) {
@@ -93,13 +96,15 @@ var sendForm = function() {
 	
 	xhr.send(pairs.join('&'));        
 }
-
 document.getElementById('team-submit').addEventListener('click', function(e) {
 	e.stopPropagation();
 	e.preventDefault();
 	sendForm();
 	return false;
 }, true);
+
+// Contact Form
+
 
 // Logs
 console.log('Forms');

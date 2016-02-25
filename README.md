@@ -32,3 +32,19 @@ $ rails s
 ```
 
 blujm should be available at http://localhost:3000
+
+
+# Editing Content
+
+Content for the various site sections are in the following partials:
+
+About: [_about.html.erb](app/views/page/_about.html.erb)
+
+Enter: [_enter.html.erb](app/views/page/_enter.html.erb)
+
+FAQ: [_faq.html.erb](app/views/page/_faq.html.erb)
+
+Where: [_where.html.erb](app/views/page/_where.html.erb)
+
+Contact: [_contact.html.erb](app/views/page/_contact.html.erb)
+

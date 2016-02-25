@@ -58,7 +58,6 @@ p{
 	font-weight: 300;
 }
 p.feature{
-	// font-family: 'PT Serif', serif;
 	font-size: 2.2rem;
 	padding: 1.5rem 0 1.5rem 0;
 }
@@ -335,8 +334,6 @@ section{
 }
 section#about{
 	background: #000;
-	overflow: hidden;
-	position: relative;
 	color: #eee;
 	p.feature{
 		color: $grey;
@@ -387,13 +384,15 @@ section#about:before {
 section#enter{
 	background: #fff;
 	form{
+		$input-spacing: 1.2rem;
+		$input-font-size: 1.2rem;
 		input{
 			box-sizing: border-box;
-			margin: 0 0 1rem 0;
+			margin: 0 0 $input-spacing 0;
 			background: #eee;
 			font-weight: 300;
 			font-size: 1.2rem;
-			padding: 1.2rem;
+			padding: $input-spacing;
 			width: 100%;
 			@include animate;
 		}
@@ -403,6 +402,7 @@ section#enter{
 			background: $bright-blue;
 			cursor: pointer;
 			float: right;
+			clear: both;
 			width: auto;
 			font-weight: 700;
 			&:hover{
@@ -410,6 +410,57 @@ section#enter{
 				color: #fff;
 			}
 		}
+		input[type=radio]{
+			display: none;
+		}
+		$players-input-size: 3rem;
+		#players-label{
+			height: $players-input-size;
+			padding: 0 $input-spacing 0 $input-spacing;
+			font-size: $input-font-size*0.9;
+			background: $grey;
+			display: table;
+			float: left;
+			color: #eee;
+			div{
+				display: table-cell;
+				vertical-align: middle;
+				width: 100%;
+			}
+		}
+		#player-select{
+			$light-grey: #eee;
+			margin: 0 0 $input-spacing 0;
+			float: left;
+			&:hover label{
+				background: $bright-blue;
+				color: #fff;
+			}
+			label.set{
+				background: $bright-blue;
+				color: #fff;
+			}
+			label{
+				background: $light-grey;
+				width: $players-input-size;
+				height: $players-input-size;
+				float: left;
+				text-align: center;
+				line-height: 100%;
+				display: table;
+				color: $grey;
+				div{
+					width: 100%;
+					display: table-cell;
+					vertical-align: middle;
+				}
+			}
+			label:hover ~ label{
+				background: $light-grey;
+				color: $grey;
+			}
+		}
+
 	}
 }
 section#faq{

@@ -2,15 +2,6 @@
 layout: default
 ---
 <header id="home">
-  <nav>
-    <ul data-gumshoe>
-      <li><a data-scroll href="#home" class="active">Home</a></li>
-      <li><a data-scroll href="#about">About</a></li>
-      <li><a data-scroll href="#enter">Enter</a></li>
-      <li><a data-scroll href="#faq">FAQ</a></li>
-      <li><a data-scroll href="#where">Where</a></li>
-    </ul>
-  </nav>
   <div class="container table">
     <div id="splash-container" class="vert-align">
       <div id="splash" class="row">
@@ -27,12 +18,21 @@ layout: default
     </div>
   </div>
 </header>
+<nav>
+  <ul data-gumshoe>
+    <li><a data-scroll href="#home" class="active">Home</a></li>
+    <li><a data-scroll href="#about">About</a></li>
+    <li><a data-scroll href="#enter">Enter</a></li>
+    <li><a data-scroll href="#faq">FAQ</a></li>
+    <li><a data-scroll href="#where">Where</a></li>
+  </ul>
+</nav>
 <div id="sections">
   <section id="about">
     <div class="container">
       <h1>The specificest game jam in Wellington.</h1>
       <p class="feature">
-        BluJm is a 48-hour game making competition with some very uniques rules.
+        BluJm is a 48-hour game making competition with some very unique rules.
       </p>
       <ul>
         <li>
@@ -79,16 +79,27 @@ layout: default
 
   <section id="enter">
     <div class="container">
-     <h1>Enter a team</h1>
-     <form>
-       <input type="text" placeholder="Team Name"/>
-       <input type="email" placeholder="Email Address"/>
-       <input type="text" placeholder="Name [ Member 1 ]"/>
-       <input type="text" placeholder="Name [ Member 2 ]"/>
-       <input type="text" placeholder="Name [ Member 3 ]"/>
-       <input type="text" placeholder="Name [ Member 4 ]"/>
-       <input type="submit" value="Enter" />
-     </form>
+      <h1>Enter a team</h1>
+      <form>
+        <input type="text" placeholder="Team Name">
+        <input type="email" placeholder="Email Address">
+        <div id="players-label"><div>Players</div></div>
+        <div id="player-select"> 
+          <input type="radio" id="player-1" name="player-selection" value="1">
+          <input type="radio" id="player-2" name="player-selection" value="2">
+          <input type="radio" id="player-3" name="player-selection" value="1">
+          <input type="radio" id="player-4" name="player-selection" value="4">
+          <input type="radio" id="player-5" name="player-selection" value="5">
+          <label for="player-1" id="1"><div>1</div></label>
+          <label for="player-2" id="2"><div>2</div></label>
+          <label for="player-3" id="3"><div>3</div></label>
+          <label for="player-4" id="4"><div>4</div></label>
+          <label for="player-5" id="5"><div>5</div></label>
+        </div>
+        <div id="players">
+        </div>
+        <input type="submit" value="Enter" >
+      </form>
     </div>
   </section>
 

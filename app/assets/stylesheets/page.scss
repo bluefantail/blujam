@@ -209,7 +209,7 @@ header{
 	}
 }
 #logo{
-	background: image-url('logo.svg') no-repeat center center;
+	background: image-url("logo.svg") no-repeat center center;
 	box-sizing: border-box;
 	background-size: contain;
 	padding-bottom: 35%;
@@ -382,7 +382,7 @@ section#about:before {
     height: 100%;
     z-index: 1;
     opacity: 0.15;
-    background: image-url('logo.svg') no-repeat center center;
+    background: image-url("logo.svg") no-repeat center center;
     background-position: 75% 16%;
     background-size: 500%;
 }
@@ -442,7 +442,7 @@ section#where{
 			float: left;
 			width: 100%;
 			padding-bottom: 66%;
-			background: image-url(map.png) no-repeat;
+			background: image-url("map.png") no-repeat;
 			background-size: cover;
 		}
 	}

@@ -6,6 +6,7 @@ set :repo_url, 'git@github.com:bluefantail/blujm.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :tmp_dir, "/tmp/#{`whoami`.chomp}"
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/apps/blujm'

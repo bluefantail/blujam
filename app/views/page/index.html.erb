@@ -1,0 +1,65 @@
+<header id="home">
+  <div class="container table">
+    <div id="splash-container" class="vert-align">
+      <div id="splash" class="row">
+        <div id="logo" class="five columns"></div>
+        <div id="splash-text" class="seven columns">
+          <div id="splash-title">BluJm</div>
+          <div id="splash-info">
+            <p>Victoria University of Wellington</p>
+            <p>Friday X<sup>th</sup> - Sunday Y<sup>th</sup> Marchpril</p>
+          </div>
+        </div>
+      </div>
+      <a data-scroll class="button" href ="#enter">Enter Team</a>
+    </div>
+  </div>
+</header>
+<nav>
+  <ul data-gumshoe>
+    <li><a data-scroll href="#home" class="active">Home</a></li>
+    <li><a data-scroll href="#about">About</a></li>
+    <li><a data-scroll href="#enter">Enter</a></li>
+    <li><a data-scroll href="#faq">FAQ</a></li>
+    <li><a data-scroll href="#where">Where</a></li>
+    <li><a data-scroll href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<div id="sections">
+  <section id="about">
+    <div class="container">
+      <%= render 'about' %>
+    </div>
+  </section>
+
+  <section id="enter">
+    <div class="container">
+      <h1>Enter a team</h1>
+      <%= render 'enter' %>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <h1>FAQ</h1>
+      <div id="questions" class="row">
+        <%= render 'faq' %>
+      </div>
+    </div>
+  </section>
+  <section id="where">
+    <div class="container">
+      <h1>Where is it?</h1>
+      <%= render 'where' %>
+      <div id="map-container">
+        <div id="map"></div>
+      </div>
+    </div>
+  </section>
+  <section id="contact">
+    <div class="container">
+      <h1>Got questions?</h1>
+      <%= render 'contact' %>
+    </div>
+  </section>
+</div>

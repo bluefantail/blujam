@@ -7,6 +7,11 @@ smoothScroll.init({
     updateURL: true, // Boolean. If true, update the URL hash on scroll
 });
 
+window.onload = function() {
+  set_players(1);
+  insert_player_feilds(1);
+}
+
 // Forms
 var playerElements = document.querySelectorAll('#player-select>label');
 var	players = document.querySelector('#players');
@@ -28,11 +33,12 @@ function handle_click(event) {
 function handle_entry(event) {
 	event.stopPropagation();
 	event.preventDefault();
-	var entryForm = document.getElementsByClassName('magic-form')[0];	   
+	var entryForm = document.getElementById("entry-form");
 	var xhr = new XMLHttpRequest();
-	xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action')); 
+	xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action'));
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  xhr.setRequestHeader('X-CSRF-Token', document.querySelector("meta[name='csrf-token']").getAttribute("content"));
 
 	xhr.onload = function() {
 		console.log("Form Sent:");
@@ -41,27 +47,28 @@ function handle_entry(event) {
 		entryForm.setAttribute('style', 'display: none');
 	};
 	
-	var inputs = entryForm.getElementsByTagName('INPUT');
+	var inputs = entryForm.getElementsByTagName('input');
 	var pairs = [];
 	
 	for (var i = 0; i < inputs.length; i++) {
 		pairs.push(encodeURI(inputs[i].getAttribute('name')) + '=' + encodeURI(inputs[i].value));
-	}  
+	}
 	
-	xhr.send(pairs.join('&'));        
+	xhr.send(pairs.join('&'));
 }
+
 function handle_contact(event){
 	event.stopPropagation();
 	event.preventDefault();
 
 	// Only jquery dep
 	$.ajax({
-    	// url: "//formspree.io/mattfannin@acidic.co.nz", 
-    	url: "//formspree.io/joshua.scott.132@gmail.com", 
+    	// url: "//formspree.io/mattfannin@acidic.co.nz",
+    	url: "//formspree.io/joshua.scott.132@gmail.com",
     	method: "POST",
     	data: $('#contact-form').serialize(),
     	dataType: "json"
-	});	
+	});
 
 	document.querySelector('#contact').insertAdjacentHTML('beforeend', '<div id="contact-message"><div>Thanks! A human will get back to you shortly.</div></div>')
 }
@@ -76,14 +83,25 @@ function set_players(playerCount) {
 		count -= 1;
 	})
 }
+
 function insert_player_feilds(playerCount){
-	var	count = playerCount;
-	players.innerHTML = "";
-	do {
-		players.insertAdjacentHTML('afterbegin', '<input type="text" name="Player ' + count + '" placeholder="Name (Player ' + count + ')" required>');
-		count -= 1; 
-	} while (count > 0);
+  for(var i = 1; i <= 5; i++) {
+    var selector = "#player-emails > input:nth-child(" + i + ")";
+    var el = document.querySelector(selector);
+    
+    if(i <= playerCount) {
+      if(el) continue;
+      var newEl = document.createElement("input");
+      newEl.type = "text";
+      newEl.name = "player-" + i + "-email";
+      newEl.placeholder = "Player " + i + " email";
+      document.getElementById("player-emails").appendChild(newEl);
+    } else if(el) {
+      document.getElementById("player-emails").removeChild(el);
+    }
+  }
 }
+
 function message(playerCount){
 	var message = "";
 	switch (playerCount) {
@@ -109,10 +127,10 @@ function message(playerCount){
 
 // LISTENERS
 Array.prototype.forEach.call(playerElements, function(element) {
-	// element.addEventListener("click", handle_click);
+	element.addEventListener("click", handle_click);
 })
 
-document.querySelector('.magic-form').addEventListener('submit', handle_entry);
+document.querySelector('#entry-form').addEventListener('submit', handle_entry);
 document.querySelector('#contact-form').addEventListener('submit', handle_contact);
 
 // END LISTENERS

@@ -16,4 +16,4 @@
 !/log/.keep
 /tmp
 public/assets/*
-!public/assets/.sprockets-manifest*.json
+!public/assets/.sprockets-manifest*.jsonrai

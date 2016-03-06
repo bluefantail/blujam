@@ -93,7 +93,7 @@ function insert_player_feilds(playerCount){
       if(el) continue;
       var newEl = document.createElement("input");
       newEl.type = "text";
-      newEl.name = "player-" + i + "-email";
+      newEl.name = "player_" + i + "_email";
       newEl.placeholder = "Player " + i + " email";
       document.getElementById("player-emails").appendChild(newEl);
     } else if(el) {

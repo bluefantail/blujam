@@ -21,4 +21,8 @@ set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
+set :slack_webhook, 'https://hooks.slack.com/services/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'
+set :slack_team, "golden-eagle"
+set :slack_channel, '#blujm'
+
 after 'deploy:publishing', 'deploy:restart'

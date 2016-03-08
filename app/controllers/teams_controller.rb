@@ -1,4 +1,6 @@
 class TeamsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     begin
       ActiveRecord::Base.transaction do

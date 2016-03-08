@@ -38,7 +38,6 @@ function handle_entry(event) {
 	xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action'));
 	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-  xhr.setRequestHeader('X-CSRF-Token', document.querySelector("meta[name='csrf-token']").getAttribute("content"));
 
 	xhr.onload = function() {
     data = JSON.parse(xhr.responseText);

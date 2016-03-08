@@ -41,19 +41,34 @@ function handle_entry(event) {
   xhr.setRequestHeader('X-CSRF-Token', document.querySelector("meta[name='csrf-token']").getAttribute("content"));
 
 	xhr.onload = function() {
-		console.log("Form Sent:");
-		console.log("Response Code: " + xhr.status + "\nResponse Text: " + xhr.responseText);
-		entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
-		entryForm.setAttribute('style', 'display: none');
+    data = JSON.parse(xhr.responseText);
+    
+    console.log("data:", data);
+    
+    if(data.success) {
+      entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
+      entryForm.setAttribute('style', 'display: none');
+    } else {
+      if(data.name_failed) {
+        document.getElementById("name-error").setAttribute("style", "display: block");
+      }
+    }
 	};
 	
-	var inputs = entryForm.getElementsByTagName('input');
+	var inputs = entryForm.querySelectorAll('.player-signup-section');
 	var pairs = [];
 	
 	for (var i = 0; i < inputs.length; i++) {
-		pairs.push(encodeURI(inputs[i].getAttribute('name')) + '=' + encodeURI(inputs[i].value));
+    var section = inputs[i];
+    console.log("section: ", section);
+    var idx = section.getAttribute("data-player-n");
+    pairs.push(encodeURI("player_" + idx + "_email") + "=" + encodeURI(section.querySelector("[name='email']").value));
+    pairs.push(encodeURI("player_" + idx + "_vec") + "=" + encodeURI(section.querySelector("[name='vec']").value));
 	}
+  
+  pairs.push("name=" + encodeURI(document.getElementById("team-name").value));
 	
+  console.log("pairs: ", pairs);
 	xhr.send(pairs.join('&'));
 }
 
@@ -86,15 +101,17 @@ function set_players(playerCount) {
 
 function insert_player_feilds(playerCount){
   for(var i = 1; i <= 5; i++) {
-    var selector = "#player-emails > input:nth-child(" + i + ")";
+    var defaultEl = document.getElementById("player-email-default");
+    var selector = "#player-" + i + "-container";
     var el = document.querySelector(selector);
     
     if(i <= playerCount) {
       if(el) continue;
-      var newEl = document.createElement("input");
-      newEl.type = "text";
-      newEl.name = "player_" + i + "_email";
-      newEl.placeholder = "Player " + i + " email";
+      var newEl = defaultEl.cloneNode(true);
+      newEl.id = "player-" + i + "-container";
+      newEl.setAttribute("style", "display: block;");
+      newEl.setAttribute("data-player-n", i);
+      newEl.setAttribute("class", "player-signup-section");
       document.getElementById("player-emails").appendChild(newEl);
     } else if(el) {
       document.getElementById("player-emails").removeChild(el);

@@ -3,9 +3,16 @@
 <p>Please ensure you provide a correct email address for each member as we may send you resources needed for voting during the competition.</p>
 
 <%= form_tag teams_url, id: "entry-form", method: :post do |f| %>
-  <%= text_field_tag :name, nil, placeholder: "Team name", required: true %>
+
+  <div id="name-error" style="display: none;">That team name is taken sorry!</div>
+  <%= text_field_tag :name, nil, placeholder: "Team name", id: "team-name", required: true %>
 
   <div id="player-emails">
+    <div id="player-email-default" class="" style="display: none;">
+      <div id="error" style="display: none;">This email is already registered to another team</div>
+      <input type="text" name="email" />
+      <input type="checkbox" name="vec" />
+    </div>
   </div>
 
   <div id="players">
@@ -23,6 +30,8 @@
       <label for="player-5" id="5"><div>5</div></label>
     </div>
   </div>
+  
+  <div id="team-message"></div>
   
   <%= submit_tag "Enter", id: "team-submit" %>
 <% end %>

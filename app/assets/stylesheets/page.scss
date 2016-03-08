@@ -34,6 +34,17 @@ $nav-gap: 5%;
 	vertical-align: middle;
 }
 
+@font-face {
+  font-family: 'icons';
+  src: asset-url('icons.eot?48017544');
+  src: asset-url('icons.eot?48017544#iefix') format('embedded-opentype'),
+       asset-url('icons.woff?48017544') format('woff'),
+       asset-url('icons.ttf?48017544') format('truetype'),
+       asset-url('icons.svg?48017544#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 // Defaults
 html,body{
 	margin: 0;
@@ -93,6 +104,20 @@ code {
     font-size: 1.1rem;
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
     margin: 0 0.3rem 0 0.3rem;
+}
+a.button,
+button,
+input[type=submit]{
+	font-size: 1.4rem;
+	background: $bright-blue;
+	color: lighten($bright-blue, 30%);
+	box-shadow: 0px 2px 8px #000;
+	padding: 1.3rem 2.6rem 1.3rem 2.6rem;
+	@include animate;
+	&:hover{
+		background: lighten($bright-blue, 20%);
+		color: #fff;
+	}
 }
 @media(max-width: 1000px){
 	html,
@@ -209,19 +234,6 @@ header{
 					@include animate;
 				}
 			}
-		}
-	}
-	a.button,
-	button{
-		font-size: 1.4rem;
-		background: $bright-blue;
-		color: lighten($bright-blue, 30%);
-		box-shadow: 0px 2px 8px #000;
-		padding: 1.3rem 2.6rem 1.3rem 2.6rem;
-		@include animate;
-		&:hover{
-			background: lighten($bright-blue, 20%);
-			color: #fff;
 		}
 	}
 }
@@ -543,14 +555,12 @@ form{
 		max-width: 100%;
 	}
 	input[type=submit]{
-		padding: 1.2rem 2.2rem 1.2rem 2.2rem;
-		color: lighten($bright-blue, 30%);
-		background: $bright-blue;
+		box-shadow: none;
 		cursor: pointer;
 		float: right;
 		clear: both;
 		width: auto;
-		font-weight: 700;
+		font-weight: 400;
 	}
 	input:disabled,
 	input:disabled:hover{
@@ -562,7 +572,7 @@ form{
 		display: none;
 	}
 	$players-input-size: 3rem;
-	#players-label{
+	#players-title{
 		height: $players-input-size;
 		padding: 0 $input-spacing 0 $input-spacing;
 		font-size: $input-font-size*0.9;
@@ -606,6 +616,57 @@ form{
 		label:hover ~ label{
 			background: $light-grey;
 			color: $grey;
+		}
+	}
+	#player-emails{
+		float: left;
+		width: 100%;
+		padding: 0 0 2rem 0;
+		.player-info{
+			float: left;
+			width: 100%;
+			input{
+				width: 30%;
+				float: left;
+				margin-right: $input-spacing;
+				&:first-of-type{
+				}
+			}
+			input[type=checkbox]{
+				display: none;
+			}
+			label{
+				display: block;
+				font-family: icons;
+				padding: $input-spacing;
+				font-size: $input-font-size !important;
+				float: left;
+				border: 1px solid #eee;
+				box-sizing: border-box;
+				background: #eee;
+				color: #ddd;
+				margin-right: $input-spacing;
+			}
+			label:hover,
+			input[type=checkbox]:checked + label{
+				color: #fff;
+				background: $bright-blue;
+				border: 1px solid $bright-blue;
+			}
+			.food-title,
+			.VEC-title{
+				font-size: 1.2rem;
+				padding: $input-spacing $input-spacing*1.5 $input-spacing $input-spacing*1.5;
+				background: $grey;
+				display: table;
+				float: left;
+				color: #eee;
+				div{
+					display: table-cell;
+					vertical-align: middle;
+					width: 100%;
+				}
+			}
 		}
 	}
 	#team-message{

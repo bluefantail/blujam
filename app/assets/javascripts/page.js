@@ -8,8 +8,8 @@ smoothScroll.init({
 });
 
 window.onload = function() {
-  set_players(1);
-  insert_player_feilds(1);
+  set_players();
+  insert_player_feilds();
 }
 
 // Forms
@@ -29,53 +29,6 @@ function handle_click(event) {
 	message(playerNum);
 	document.querySelector('#team-submit').removeAttribute('disabled');
 }
-// Handle team submissions (adapted from cloudstitch 'Magic Forms' examples)
-function handle_entry(event) {
-	event.stopPropagation();
-	event.preventDefault();
-	var entryForm = document.getElementById("entry-form");
-	var xhr = new XMLHttpRequest();
-	xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action'));
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-	xhr.onload = function() {
-    data = JSON.parse(xhr.responseText);
-    
-    console.log("data:", data);
-    
-    [].forEach.call(document.querySelectorAll(".entry-error"), function(el) {
-      console.log("el:", el, el.parentNode);
-      if(el && el.parentNode) {
-        el.parentNode.removeChild(el);
-      }
-    });
-    
-    if(data.success) {
-      entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
-      entryForm.setAttribute('style', 'display: none');
-    } else {
-      entryForm.insertAdjacentHTML('beforebegin', '<div class="entry-error">' + data.message + '</div>');
-    }
-	};
-	
-	var inputs = entryForm.querySelectorAll('.player-signup-section');
-	var pairs = [];
-	
-	for (var i = 0; i < inputs.length; i++) {
-    var section = inputs[i];
-    console.log("section: ", section);
-    var idx = section.getAttribute("data-player-n");
-    pairs.push(encodeURI("player_" + idx + "_email") + "=" + encodeURI(section.querySelector("[name='email']").value));
-    pairs.push(encodeURI("player_" + idx + "_vec") + "=" + encodeURI(section.querySelector("[name='vec']").value));
-	}
-  
-  pairs.push("name=" + encodeURI(document.getElementById("team-name").value));
-	
-  console.log("pairs: ", pairs);
-	xhr.send(pairs.join('&'));
-}
-
 function handle_contact(event){
 	event.stopPropagation();
 	event.preventDefault();
@@ -112,10 +65,19 @@ function insert_player_feilds(playerCount){
     if(i <= playerCount) {
       if(el) continue;
       var newEl = defaultEl.cloneNode(true);
-      newEl.id = "player-" + i + "-container";
-      newEl.setAttribute("style", "display: block;");
-      newEl.setAttribute("data-player-n", i);
-      newEl.setAttribute("class", "player-signup-section");
+	      newEl.id = "player-" + i + "-container";
+	      newEl.setAttribute("style", "display: block;");
+	      newEl.setAttribute("data-player-n", i);
+	      newEl.className = 'player-info';
+	      
+	      newEl.querySelector('[name="name"]').placeholder = 'Player ' + i + ' Name';
+	      
+	      newEl.querySelector('[name="food"]').id = 'player-' + i + '-food';
+	      newEl.querySelector('[for="food"]').setAttribute('for', 'player-' + i + '-food');
+
+	      newEl.querySelector('[name="vec"]').id = 'player-' + i + '-vec';
+	      newEl.querySelector('[for="vec"]').setAttribute('for', 'player-' + i + '-vec');
+      
       document.getElementById("player-emails").appendChild(newEl);
     } else if(el) {
       document.getElementById("player-emails").removeChild(el);
@@ -150,13 +112,8 @@ function message(playerCount){
 Array.prototype.forEach.call(playerElements, function(element) {
 	element.addEventListener("click", handle_click);
 })
-
-document.querySelector('#entry-form').addEventListener('submit', handle_entry);
 document.querySelector('#contact-form').addEventListener('submit', handle_contact);
-
 // END LISTENERS
-
-
 
 // Logs
 console.log('Forms');

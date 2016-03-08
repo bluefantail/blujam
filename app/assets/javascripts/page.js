@@ -45,13 +45,18 @@ function handle_entry(event) {
     
     console.log("data:", data);
     
+    [].forEach.call(document.querySelectorAll(".entry-error"), function(el) {
+      console.log("el:", el, el.parentNode);
+      if(el && el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    });
+    
     if(data.success) {
       entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
       entryForm.setAttribute('style', 'display: none');
     } else {
-      if(data.name_failed) {
-        document.getElementById("name-error").setAttribute("style", "display: block");
-      }
+      entryForm.insertAdjacentHTML('beforebegin', '<div class="entry-error">' + data.message + '</div>');
     }
 	};
 	

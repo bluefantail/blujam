@@ -7,7 +7,7 @@ set :repo_url, 'git@github.com:bluefantail/blujm.git'
 set :passenger_roles, :app
 
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+set :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :tmp_dir, "/tmp/#{`whoami`.split('\\').first.chomp}"
 
 # Default deploy_to directory is /var/www/my_app_name

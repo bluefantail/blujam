@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admins
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,6 +8,13 @@ Rails.application.routes.draw do
   
   resources :teams, only: [:create]
   resources :page, only: [:index]
+  
+  namespace :admin do
+    resources :home
+    resources :teams do
+      resources :players
+    end
+  end
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

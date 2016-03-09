@@ -682,6 +682,16 @@ form{
 
 }
 
+// Errors
+.entry-error,
+.error{
+	color: red;
+	float: left;
+}
+.error{
+	display: none;
+}
+
 // Column magic from Skeleton.css
 .row:after {
   content: "";

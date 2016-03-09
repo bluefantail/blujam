@@ -36,6 +36,7 @@ function handle_entry(event) {
   event.preventDefault();
   
   var entryForm = document.getElementById("entry-form");
+  var entryFormErrors = document.getElementById("entry-errors");
   var xhr = new XMLHttpRequest();
   xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action'));
   xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
@@ -57,7 +58,7 @@ function handle_entry(event) {
       entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
       entryForm.setAttribute('style', 'display: none');
     } else {
-      entryForm.insertAdjacentHTML('beforebegin', '<div class="entry-error">' + data.message + '</div>');
+      entryFormErrors.insertAdjacentHTML('afterbegin', '<div class="entry-error">' + data.message + '</div>');
     }
   }
 
@@ -127,7 +128,12 @@ function insert_player_feilds(playerCount){
 	      newEl.setAttribute("data-player-n", i);
 	      newEl.className = 'player-info';
 	      
-	      newEl.querySelector('[name="name"]').placeholder = 'Player ' + i + ' Name';
+        nameEl = newEl.querySelector('[name="name"]');
+        nameEl.placeholder = 'Player ' + i + ' Name';
+        nameEl.setAttribute ('required', 'true');
+
+        emailEl = newEl.querySelector('[name="email"]');
+        emailEl.setAttribute ('required', 'true');
 	      
 	      newEl.querySelector('[name="food"]').id = 'player-' + i + '-food';
 	      newEl.querySelector('[for="food"]').setAttribute('for', 'player-' + i + '-food');

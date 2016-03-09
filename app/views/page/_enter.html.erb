@@ -4,10 +4,8 @@
 
 <%= form_tag teams_url, id: "entry-form", method: :post do |f| %>
 
-  <div id="name-error" style="display: none;">That team name is taken sorry!</div>
   <%= text_field_tag :name, nil, placeholder: "Team name", id: "team-name", required: true %>
-
-
+  <div id="name-error" class="error">That team name is taken sorry!</div>
   <div id="players">
     <div id="players-title"><div>Players</div></div>
     <div id="player-select">
@@ -28,17 +26,19 @@
  
   <div id="player-emails">
     <div id="player-email-default" class="" style="display: none;">
-      <div id="error" style="display: none;">This email is already registered to another team</div>
-      <input type="text" name="name" novalidate />
-      <input type="email" name="email" placeholder="Email" novalidate />
+      <div id="error" class="error">This email is already registered to another team</div>
+      <input type="text" name="name"/>
+      <input type="email" name="email" placeholder="Email"/>
       <div class="food-title"><div>Food</div></div>
-      <input type="checkbox" name="food" novalidate />
+      <input type="checkbox" name="food" />
       <label for="food" class="icon-ok"></label>
       <div class="VEC-title"><div>VEC</div></div>
-      <input type="checkbox" name="vec" novalidate />
+      <input type="checkbox" name="vec" />
       <label for="vec" class="icon-ok"></label>
     </div>
   </div>
+
+  <div id="entry-errors"></div>
   
   <%= submit_tag "Enter", id: "team-submit", disabled: true %>
 <% end %>

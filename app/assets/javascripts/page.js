@@ -29,6 +29,63 @@ function handle_click(event) {
 	message(playerNum);
 	document.querySelector('#team-submit').removeAttribute('disabled');
 }
+
+// Handle team submissions (adapted from cloudstitch 'Magic Forms' examples)
+function handle_entry(event) {
+  event.stopPropagation();
+  event.preventDefault();
+  
+  var entryForm = document.getElementById("entry-form");
+  var xhr = new XMLHttpRequest();
+  xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action'));
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+  xhr.onload = function() {
+    data = JSON.parse(xhr.responseText);
+
+    console.log("data:", data);
+
+    [].forEach.call(document.querySelectorAll(".entry-error"), function(el) {
+      console.log("el:", el, el.parentNode);
+      
+      if(el && el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    });
+
+    if(data.success) {
+      entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
+      entryForm.setAttribute('style', 'display: none');
+    } else {
+      entryForm.insertAdjacentHTML('beforebegin', '<div class="entry-error">' + data.message + '</div>');
+    }
+  }
+
+  var inputs = document.querySelectorAll('.player-info');
+  
+  var data = {
+    team_name: document.getElementById("team-name").value,
+    players: []
+  };
+
+  for (var i = 0; i < inputs.length; i++) {
+    var section = inputs[i];
+    console.log("section: ", section);
+    var idx = section.getAttribute("data-player-n");
+    var player = {
+      email:       section.querySelector("[name='email']").value,
+      player_name: section.querySelector("[name='name']").value,
+      vec:         section.querySelector("[name='vec']").value,
+      food:        section.querySelector("[name='food']").value
+    };
+    data.players.push(player);
+  }
+  
+  console.log("Sending: ", data);
+  xhr.send(JSON.stringify(data));
+}
+
+
 function handle_contact(event){
 	event.stopPropagation();
 	event.preventDefault();
@@ -111,7 +168,9 @@ function message(playerCount){
 // LISTENERS
 Array.prototype.forEach.call(playerElements, function(element) {
 	element.addEventListener("click", handle_click);
-})
+});
+
+document.querySelector('#entry-form').addEventListener('submit', handle_entry);
 document.querySelector('#contact-form').addEventListener('submit', handle_contact);
 // END LISTENERS
 

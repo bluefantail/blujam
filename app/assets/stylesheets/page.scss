@@ -28,6 +28,7 @@ $nav-gap: 5%;
 .table{
 	display: table;
 	height: 100%;
+	padding: 0 !important;
 }
 .vert-align{
 	display: table-cell;
@@ -164,26 +165,31 @@ header{
 	@include animate;
 }
 @media(max-width: 1550px){
+	#splash,
 	.container{
 		padding-left: $nav-gap; // leave space for nav
 	}
 }
 @media(max-width: 1400px){
+	#splash,
 	.container{
 		padding-left: $nav-gap*2;
 	}
 }
 @media(max-width: 1300px){
+	#splash,
 	.container{
 		padding: 0 $small-padding 0 $nav-gap*3;
 	}
 }
 @media(max-width: 1200px){
+	#splash,
 	.container{
 		padding: 0 $small-padding 0 $small-padding;
 	}
 }
 @media(max-width: 450px){
+	#splash,
 	.container{
 		padding: 0 $small-padding/2 0 $small-padding/2;
 	}
@@ -584,6 +590,7 @@ form{
 		display: table;
 		float: left;
 		color: #eee;
+		box-sizing: border-box;
 		div{
 			display: table-cell;
 			vertical-align: middle;
@@ -608,7 +615,6 @@ form{
 			height: $players-input-size;
 			float: left;
 			text-align: center;
-			line-height: 100%;
 			display: table;
 			color: $grey;
 			div{
@@ -622,7 +628,7 @@ form{
 			color: $grey;
 		}
 	}
-	#player-emails{
+	#player-fields{
 		float: left;
 		width: 100%;
 		padding: 0 0 2rem 0;
@@ -633,8 +639,6 @@ form{
 				width: 30%;
 				float: left;
 				margin-right: $input-spacing;
-				&:first-of-type{
-				}
 			}
 			input[type=checkbox]{
 				display: none;
@@ -643,13 +647,13 @@ form{
 				display: block;
 				font-family: icons;
 				padding: $input-spacing;
-				font-size: $input-font-size !important;
+				font-size: $input-font-size;
 				float: left;
 				border: 1px solid #eee;
-				box-sizing: border-box;
 				background: #eee;
 				color: #ddd;
 				margin-right: $input-spacing;
+				margin-bottom: $input-spacing;
 			}
 			label:hover,
 			input[type=checkbox]:checked + label{
@@ -659,9 +663,11 @@ form{
 			}
 			.food-title,
 			.VEC-title{
-				font-size: 1.2rem;
 				padding: $input-spacing $input-spacing*1.5 $input-spacing $input-spacing*1.5;
+				margin-bottom: $input-spacing;
+				font-size: $input-font-size;
 				background: $grey;
+				font-weight: 300;
 				display: table;
 				float: left;
 				color: #eee;
@@ -681,6 +687,72 @@ form{
 		div{
 			display: table-cell;
 			vertical-align: middle;
+			font-size: 1.1rem;
+		}
+	}
+	@media(max-width: 1300px){
+		#player-fields{
+			.player-info{
+				input{
+					width: 28%;
+				}
+				.food-title,
+				.VEC-title{
+					padding-left: $input-spacing*1.1;
+					padding-right: $input-spacing*1.1;
+				}
+			}
+		}
+	}
+	@media(max-width: 1000px){
+		#player-fields{
+			.player-info{
+				input{
+					width: 45%;
+				}
+				.food-title{
+					clear: left;
+				}
+				.food-title,
+				.VEC-title{
+					padding-left: $input-spacing*2;
+					padding-right: $input-spacing*2;
+					margin-bototm: $input-spacing;
+				}
+			}
+		}
+	}
+	@media(max-width: 700px){
+		#player-fields{
+			.player-info{
+				input{
+					width: 100%;
+					margin-right: 0;
+				}
+				label{
+					font-size: $input-font-size*0.8;
+				}
+				.food-title,
+				.VEC-title{
+					padding-left: $input-spacing*1;
+					padding-right: $input-spacing*1;
+					font-size: $input-font-size*0.8;
+				}
+			}
+		}
+	}
+	@media(max-width: 350px){
+		#player-fields{
+			.player-info{
+				input{
+				}
+				label{
+					margin-right: 0;
+				}
+				.food-title,
+				.VEC-title{
+				}
+			}
 		}
 	}
 

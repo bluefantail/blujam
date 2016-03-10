@@ -141,9 +141,9 @@ function insert_player_feilds(playerCount){
 	      newEl.querySelector('[name="vec"]').id = 'player-' + i + '-vec';
 	      newEl.querySelector('[for="vec"]').setAttribute('for', 'player-' + i + '-vec');
       
-      document.getElementById("player-emails").appendChild(newEl);
+      document.getElementById("player-fields").appendChild(newEl);
     } else if(el) {
-      document.getElementById("player-emails").removeChild(el);
+      document.getElementById("player-fields").removeChild(el);
     }
   }
 }

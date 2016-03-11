@@ -76,8 +76,8 @@ function handle_entry(event) {
     var player = {
       email:       section.querySelector("[name='email']").value,
       player_name: section.querySelector("[name='name']").value,
-      vec:         section.querySelector("[name='vec']").value,
-      food:        section.querySelector("[name='food']").value
+      vec:         section.querySelector("[name='vec']").checked,
+      food:        section.querySelector("[name='food']").checked
     };
     data.players.push(player);
   }

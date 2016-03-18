@@ -176,6 +176,22 @@ document.querySelector('#entry-form').addEventListener('submit', handle_entry);
 document.querySelector('#contact-form').addEventListener('submit', handle_contact);
 // END LISTENERS
 
+// Disable Hover events on mobile devices
+if ('createTouch' in document) {
+  try {
+    var ignore = /:hover\b/;
+    for (var i = 0; i < document.styleSheets.length; i++) {
+      var sheet = document.styleSheets[i];
+      for (var j = sheet.cssRules.length - 1; j >= 0; j--) {
+        var rule = sheet.cssRules[j];
+        if (rule.type === CSSRule.STYLE_RULE && ignore.test(rule.selectorText)) {
+          sheet.deleteRule(j);
+        }
+      }
+    }
+  } catch (e) {}
+}
+
 // Logs
 console.log('Forms');
 console.log('-------------------------------------------------');

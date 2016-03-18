@@ -710,8 +710,12 @@ form{
 				margin-right: $input-spacing;
 				margin-bottom: $input-spacing;
 			}
-			label:hover,
 			input[type=checkbox]:checked + label{
+				color: #fff;
+				background: $bright-blue;
+				border: 1px solid $bright-blue;
+			}
+			label:hover{ // These last two are duplicated to avoid js ignoring both on touch devices
 				color: #fff;
 				background: $bright-blue;
 				border: 1px solid $bright-blue;

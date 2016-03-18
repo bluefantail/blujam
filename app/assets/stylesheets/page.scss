@@ -254,16 +254,16 @@ header{
 }
 $signup-status-width: 800px;
 #signup-status{
-	$space: 0.3;
+	$space: 0.3; // Distance from corner, 0 - 1
 	width: $signup-status-width;
 	top: ($signup-status-width/2)*$space;
 	right: -(($signup-status-width/2)*($space*((1/$space)-1)));
 	position: absolute;
 	text-align: center;
 	box-sizing: border-box;
-	padding: 0.7rem 0 0.7rem 0;
+	padding: 1rem 0 1rem 0;
 	text-indent: -2rem;
-	font-size: 0.8rem;
+	font-size: 1.3rem;
 	border: 2px solid darken($dim-blue, 10%);
 	box-shadow:  0px 1px 10px #000;
 	text-shadow: 0px 0px 4px $dark-blue;
@@ -274,7 +274,7 @@ $signup-status-width: 800px;
 }
 @media(max-width: 1400px){
 	#signup-status{	
-		$space: 0.2;
+		$space: 0.18;
 		width: $signup-status-width;
 		top: ($signup-status-width/2)*$space;
 		right: -(($signup-status-width/2)*($space*((1/$space)-1)));
@@ -282,7 +282,7 @@ $signup-status-width: 800px;
 }
 @media(max-width: 1000px){
 	#signup-status{	
-		$space: 0.16;
+		$space: 0.14;
 		width: $signup-status-width;
 		top: ($signup-status-width/2)*$space;
 		right: -(($signup-status-width/2)*($space*((1/$space)-1)));
@@ -290,7 +290,8 @@ $signup-status-width: 800px;
 }
 @media(max-width: 750px){
 	#signup-status{	
-		$space: 0.14;
+		$space: 0.12;
+		font-size: 1.1rem;
 		width: $signup-status-width;
 		top: ($signup-status-width/2)*$space;
 		right: -(($signup-status-width/2)*($space*((1/$space)-1)));
@@ -299,6 +300,7 @@ $signup-status-width: 800px;
 @media(max-width: 500px){
 	#signup-status{	
 		$space: 0.09;
+		font-size: 0.9rem;
 		width: $signup-status-width;
 		top: ($signup-status-width/2)*$space;
 		right: -(($signup-status-width/2)*($space*((1/$space)-1)));

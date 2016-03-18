@@ -48,4 +48,3 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'highline'
 gem 'slackistrano'
 gem 'devise'
->>>>>>> Add admin center for teams

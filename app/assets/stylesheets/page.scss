@@ -593,7 +593,68 @@ section#contact{
 		}
 	}
 }
+section#sponsors{
+	padding: 3.5rem 0 3.5rem 0;
+	box-sizing: border-box;
+	.container{
+	}
+	.sponsor{
+		width: 85px;
+		height: 35px;
+		box-sizing: border-box;
+		background-size: contain;
+		background-position: center center;
+		background-repeat: no-repeat;
+		display: block;
+		margin: 1rem auto 2rem auto;
+	}
+	.large{
+		width: 400px;
+		height: 200px;
+		clear: both;
+	}
+	.vec{
+		background-image: image-url("vec-logo.png");
+	}
+	.acidic{
+		background-image: image-url("acidic.svg");
+	}
 
+	a{
+		opacity: 0.7;
+		@include animate;
+		&:hover{
+			opacity: 1;
+		}
+	}
+}
+[data-tooltip]{
+	position: relative;
+}
+[data-tooltip]:after{
+	content: attr(data-tooltip);
+	position: absolute;
+	right: -110%;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	height: 1.6rem;
+	background: #555;
+	color: #fff;
+	border-radius: 2px;
+	padding: 0.4rem 1rem 0.4rem 1rem;
+	box-sizing: border-box;
+	display: block;
+	font-size: 0.7rem;
+	white-space: nowrap;
+	opacity: 0;
+	visibility: hidden;
+	@include animate;
+}
+[data-tooltip]:hover:after{
+	opacity: 1;
+	visibility: visible;
+}
 form{
 	$input-spacing: 1.2rem;
 	$input-font-size: 1.2rem;

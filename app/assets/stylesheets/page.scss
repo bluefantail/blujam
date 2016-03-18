@@ -529,10 +529,7 @@ section#faq{
 
 }
 section#where{
-	#map-container{
-		width: 100%;
-		max-width: 1000px;
-		margin-top: 4rem;
+
 		#map{
 			float: left;
 			width: 100%;
@@ -540,7 +537,7 @@ section#where{
 			background: image-url("map.png") no-repeat;
 			background-size: cover;
 		}
-	}
+	
 }
 section#contact{
 	background: #000;

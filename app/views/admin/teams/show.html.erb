@@ -7,7 +7,6 @@
     <th>Name</th>
     <th>Email</th>
     <th>VEC</th>
-    <th>Food</th>
   </tr>
   
   <% @team.players.each do |player| %>
@@ -15,7 +14,6 @@
       <td><%= player.name %></td>
       <td><%= player.email %></td>
       <td><%= player.vec %></td>
-      <td><%= player.food %></td>
     </tr>
   <% end %>
 </table>

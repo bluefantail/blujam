@@ -133,9 +133,6 @@ function insert_player_feilds(playerCount){
 
         emailEl = newEl.querySelector('[name="email"]');
         emailEl.setAttribute ('required', 'true');
-	      
-	      newEl.querySelector('[name="food"]').id = 'player-' + i + '-food';
-	      newEl.querySelector('[for="food"]').setAttribute('for', 'player-' + i + '-food');
 
 	      newEl.querySelector('[name="vec"]').id = 'player-' + i + '-vec';
 	      newEl.querySelector('[for="vec"]').setAttribute('for', 'player-' + i + '-vec');

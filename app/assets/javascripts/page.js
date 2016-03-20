@@ -7,6 +7,11 @@ smoothScroll.init({
     updateURL: true, // Boolean. If true, update the URL hash on scroll
 });
 
+window.onload = function() {
+  set_players();
+  insert_player_feilds();
+}
+
 // Forms
 var playerElements = document.querySelectorAll('#player-select>label');
 var	players = document.querySelector('#players');
@@ -24,44 +29,75 @@ function handle_click(event) {
 	message(playerNum);
 	document.querySelector('#team-submit').removeAttribute('disabled');
 }
+
 // Handle team submissions (adapted from cloudstitch 'Magic Forms' examples)
 function handle_entry(event) {
-	event.stopPropagation();
-	event.preventDefault();
-	var entryForm = document.getElementsByClassName('magic-form')[0];	   
-	var xhr = new XMLHttpRequest();
-	xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action')); 
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+  event.stopPropagation();
+  event.preventDefault();
+  
+  var entryForm = document.getElementById("entry-form");
+  var entryFormErrors = document.getElementById("entry-errors");
+  var xhr = new XMLHttpRequest();
+  xhr.open(entryForm.getAttribute('method'), entryForm.getAttribute('action'));
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
-	xhr.onload = function() {
-		console.log("Form Sent:");
-		console.log("Response Code: " + xhr.status + "\nResponse Text: " + xhr.responseText);
-		entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
-		entryForm.setAttribute('style', 'display: none');
-	};
-	
-	var inputs = entryForm.getElementsByTagName('INPUT');
-	var pairs = [];
-	
-	for (var i = 0; i < inputs.length; i++) {
-		pairs.push(encodeURI(inputs[i].getAttribute('name')) + '=' + encodeURI(inputs[i].value));
-	}  
-	
-	xhr.send(pairs.join('&'));        
+  xhr.onload = function() {
+    data = JSON.parse(xhr.responseText);
+
+    console.log("data:", data);
+
+    [].forEach.call(document.querySelectorAll(".entry-error"), function(el) {
+      console.log("el:", el, el.parentNode);
+      
+      if(el && el.parentNode) {
+        el.parentNode.removeChild(el);
+      }
+    });
+
+    if(data.success) {
+      entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks for registering, we will send all players a confirmation closer to the event.</div>');
+      entryForm.setAttribute('style', 'display: none');
+    } else {
+      entryFormErrors.insertAdjacentHTML('afterbegin', '<div class="entry-error">' + data.message + '</div>');
+    }
+  }
+
+  var inputs = document.querySelectorAll('.player-info');
+  
+  var data = {
+    team_name: document.getElementById("team-name").value,
+    players: []
+  };
+
+  for (var i = 0; i < inputs.length; i++) {
+    var section = inputs[i];
+    console.log("section: ", section);
+    var idx = section.getAttribute("data-player-n");
+    var player = {
+      email:       section.querySelector("[name='email']").value,
+      player_name: section.querySelector("[name='name']").value,
+      vec:         section.querySelector("[name='vec']").checked
+    };
+    data.players.push(player);
+  }
+  
+  console.log("Sending: ", data);
+  xhr.send(JSON.stringify(data));
 }
+
+
 function handle_contact(event){
 	event.stopPropagation();
 	event.preventDefault();
 
 	// Only jquery dep
 	$.ajax({
-    	// url: "//formspree.io/mattfannin@acidic.co.nz", 
-    	url: "//formspree.io/joshua.scott.132@gmail.com", 
+    	// url: "//formspree.io/mattfannin@acidic.co.nz",
+    	url: "//formspree.io/joshua.scott.132@gmail.com",
     	method: "POST",
     	data: $('#contact-form').serialize(),
     	dataType: "json"
-	});	
+	});
 
 	document.querySelector('#contact').insertAdjacentHTML('beforeend', '<div id="contact-message"><div>Thanks! A human will get back to you shortly.</div></div>')
 }
@@ -76,14 +112,38 @@ function set_players(playerCount) {
 		count -= 1;
 	})
 }
+
 function insert_player_feilds(playerCount){
-	var	count = playerCount;
-	players.innerHTML = "";
-	do {
-		players.insertAdjacentHTML('afterbegin', '<input type="text" name="Player ' + count + '" placeholder="Name (Player ' + count + ')" required>');
-		count -= 1; 
-	} while (count > 0);
+  for(var i = 1; i <= 5; i++) {
+    var defaultEl = document.getElementById("player-email-default");
+    var selector = "#player-" + i + "-container";
+    var el = document.querySelector(selector);
+    
+    if(i <= playerCount) {
+      if(el) continue;
+      var newEl = defaultEl.cloneNode(true);
+	      newEl.id = "player-" + i + "-container";
+	      newEl.setAttribute("style", "display: block;");
+	      newEl.setAttribute("data-player-n", i);
+	      newEl.className = 'player-info';
+	      
+        nameEl = newEl.querySelector('[name="name"]');
+        nameEl.placeholder = 'Player ' + i + ' Name';
+        nameEl.setAttribute ('required', 'true');
+
+        emailEl = newEl.querySelector('[name="email"]');
+        emailEl.setAttribute ('required', 'true');
+
+	      newEl.querySelector('[name="vec"]').id = 'player-' + i + '-vec';
+	      newEl.querySelector('[for="vec"]').setAttribute('for', 'player-' + i + '-vec');
+      
+      document.getElementById("player-fields").appendChild(newEl);
+    } else if(el) {
+      document.getElementById("player-fields").removeChild(el);
+    }
+  }
 }
+
 function message(playerCount){
 	var message = "";
 	switch (playerCount) {
@@ -109,15 +169,28 @@ function message(playerCount){
 
 // LISTENERS
 Array.prototype.forEach.call(playerElements, function(element) {
-	// element.addEventListener("click", handle_click);
-})
+	element.addEventListener("click", handle_click);
+});
 
-document.querySelector('.magic-form').addEventListener('submit', handle_entry);
+document.querySelector('#entry-form').addEventListener('submit', handle_entry);
 document.querySelector('#contact-form').addEventListener('submit', handle_contact);
-
 // END LISTENERS
 
-
+// Disable Hover events on mobile devices
+if ('createTouch' in document) {
+  try {
+    var ignore = /:hover\b/;
+    for (var i = 0; i < document.styleSheets.length; i++) {
+      var sheet = document.styleSheets[i];
+      for (var j = sheet.cssRules.length - 1; j >= 0; j--) {
+        var rule = sheet.cssRules[j];
+        if (rule.type === CSSRule.STYLE_RULE && ignore.test(rule.selectorText)) {
+          sheet.deleteRule(j);
+        }
+      }
+    }
+  } catch (e) {}
+}
 
 // Logs
 console.log('Forms');

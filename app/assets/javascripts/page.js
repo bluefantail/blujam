@@ -55,7 +55,7 @@ function handle_entry(event) {
     });
 
     if(data.success) {
-      entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks! A human will get back to you with a confirmation once that is processed.</div>');
+      entryForm.insertAdjacentHTML('beforebegin', '<div id="entry-confirmation">Thanks for registering, we will send all players a confirmation closer to the event.</div>');
       entryForm.setAttribute('style', 'display: none');
     } else {
       entryFormErrors.insertAdjacentHTML('afterbegin', '<div class="entry-error">' + data.message + '</div>');

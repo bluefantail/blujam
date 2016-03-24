@@ -25,6 +25,17 @@ $nav-gap: 5%;
 	transition:
 		all $duration ease-in-out;
 }
+@mixin calculate_tile($count: 1, $padding: 1%) {
+	$marginCount: $count - 1;
+	$totalMargin: $marginCount*$padding;
+	$tilewidth: ((100 - $totalMargin)/$count); /* Width of tiles */
+	width: $tilewidth;
+	margin-right: $padding;
+	margin-bottom: $padding;
+	&:nth-of-type(#{$count}){
+		margin-right: 0;
+	}
+}
 .table{
 	display: table;
 	height: 100%;
@@ -483,9 +494,14 @@ section#about{
 section#enter{
 	background: #fff;
 	#entry-confirmation{
-		padding: 0 0 4rem 0;
+		padding: 6rem 0 6rem 0;
 		float: left;
-		font-size: 1.2rem;
+		clear: both;
+		width: 100%;
+		display: block;
+		font-size: 2rem;
+		font-weight: 300;
+		color: $bright-blue;
 	}
 }
 section#faq{
@@ -625,6 +641,13 @@ section#sponsors{
 		@include animate;
 		&:hover{
 			opacity: 1;
+		}
+	}
+}
+@media(max-width: 700px){
+	section#sponsors{
+		.large{
+			width: 100%;
 		}
 	}
 }
@@ -873,6 +896,34 @@ form{
 		}
 	}
 
+}
+
+// Teams
+
+#teams-entered{
+	float: left;
+	width: 100%;
+	display: block;
+	.team-tile{
+		color: lighten($dark-blue, 85%);
+		background: lighten($dark-blue, 7%);
+		position: relative;
+		border-radius: 3px;
+		float: left;
+		overflow: hidden;
+		font-size: 115%;
+		font-weight: 100;
+		margin: 0 1rem 1rem 0;
+		@include animate;
+		.team-name{
+			float: left;
+			padding: 1rem 3rem 1rem 3rem;
+			text-align: center;
+		}
+		&:hover{
+			background-color: lighten($dark-blue, 15%);
+		}
+	}
 }
 
 // Errors

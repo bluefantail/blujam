@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :home
     resources :teams do
+      post 'verify' => 'teams#verify'
       resources :players
     end
   end

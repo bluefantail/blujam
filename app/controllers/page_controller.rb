@@ -1,5 +1,5 @@
 class PageController < ApplicationController
   def index
-  	@teams = Team.all
+  	@teams = Team.verified
   end
 end

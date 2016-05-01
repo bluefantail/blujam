@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :home
     resources :contests
+    
+    get 'teams/all' => 'teams#all'
     resources :teams do
       post 'verify' => 'teams#verify'
       resources :players

@@ -16,6 +16,10 @@ class Admin::TeamsController < ApplicationController
     redirect_to admin_teams_url
   end
   
+  def all
+    @players = Player.all
+  end
+  
   def verify
     @team = Team.find(params[:team_id])
     @team.verified = true

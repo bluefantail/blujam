@@ -1,4 +1,6 @@
 class Admin::ContestsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @contests = Contest.all
   end

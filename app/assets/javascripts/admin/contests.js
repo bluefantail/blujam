@@ -7,6 +7,6 @@ if(document.querySelector(".timer") != null) {
     
     var remaining = new Date(ends_at - Date.now());
     
-    document.querySelector("#countdown").innerText = remaining.getHours() + ":" + remaining.getMinutes();
+    document.querySelector("#countdown").innerText = remaining.getHours() + ":" + remaining.getMinutes() + ":" + remaining.getSeconds();
   }, 500);
 }

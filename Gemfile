@@ -36,6 +36,7 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano-passenger'
   gem 'capistrano-bundler'
+  gem 'quiet_assets'
 end
 
 group :development do

@@ -1,6 +1,14 @@
-<p>
-	Teams that have entered BluJm so far.
-</p>
+<% if @contest_running %>
+ 	<h1>Last years teams</h1>
+	<p>
+		In memory of all those  who entered the most recent BluJm.
+	</p>
+<% else %>
+	<h1>Teams</h1>
+	<p>
+		Teams that have entered BluJm so far.
+	</p>
+<% end %>
 <div id="teams-entered">
 	<%= render @teams %>
 </div>

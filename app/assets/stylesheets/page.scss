@@ -545,7 +545,6 @@ section#faq{
 
 }
 section#where{
-
 		#map{
 			float: left;
 			width: 100%;
@@ -553,7 +552,6 @@ section#where{
 			background: image-url("map.png") no-repeat;
 			background-size: cover;
 		}
-	
 }
 section#contact{
 	background: #000;
@@ -895,7 +893,6 @@ form{
 			}
 		}
 	}
-
 }
 
 // Teams
@@ -1007,5 +1004,4 @@ form{
 
   .offset-by-one-half.column,
   .offset-by-one-half.columns     { margin-left: 52%; }
-
 }

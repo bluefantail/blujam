@@ -1,12 +1,3 @@
-// Initialise Smooth Scroll and Gumshoe for Navigation
-gumshoe.init();
-smoothScroll.init({
-    speed: 560, // Integer. How fast to complete the scroll in milliseconds
-    easing: 'easeInOutCubic', // Easing pattern to use
-    offset: -1, // Integer. How far to offset the scrolling anchor location in pixels
-    updateURL: true, // Boolean. If true, update the URL hash on scroll
-});
-
 window.onload = function() {
   set_players();
   insert_player_feilds();
@@ -14,20 +5,20 @@ window.onload = function() {
 
 // Forms
 var playerElements = document.querySelectorAll('#player-select>label');
-var	players = document.querySelector('#players');
+var players = document.querySelector('#players');
 var teamMessage = document.querySelector('#team-message');
 
-var	contactForm = document.querySelector('#contact-form');
+var contactForm = document.querySelector('#contact-form');
 
 // FUNCTIONS
 // Events
 function handle_click(event) {
-	playerNum = event.currentTarget.getAttribute("id");
-	console.log(playerNum + " players selected");
-	set_players(playerNum);
-	insert_player_feilds(playerNum);
-	message(playerNum);
-	document.querySelector('#team-submit').removeAttribute('disabled');
+  playerNum = event.currentTarget.getAttribute("id");
+  console.log(playerNum + " players selected");
+  set_players(playerNum);
+  insert_player_feilds(playerNum);
+  message(playerNum);
+  document.querySelector('#team-submit').removeAttribute('disabled');
 }
 
 // Handle team submissions (adapted from cloudstitch 'Magic Forms' examples)
@@ -87,30 +78,30 @@ function handle_entry(event) {
 
 
 function handle_contact(event){
-	event.stopPropagation();
-	event.preventDefault();
+  event.stopPropagation();
+  event.preventDefault();
 
-	// Only jquery dep
-	$.ajax({
-    	// url: "//formspree.io/mattfannin@acidic.co.nz",
-    	url: "//formspree.io/joshua.scott.132@gmail.com",
-    	method: "POST",
-    	data: $('#contact-form').serialize(),
-    	dataType: "json"
-	});
+  // Only jquery dep
+  $.ajax({
+      // url: "//formspree.io/mattfannin@acidic.co.nz",
+      url: "//formspree.io/joshua.scott.132@gmail.com",
+      method: "POST",
+      data: $('#contact-form').serialize(),
+      dataType: "json"
+  });
 
-	document.querySelector('#contact').insertAdjacentHTML('beforeend', '<div id="contact-message"><div>Thanks! A human will get back to you shortly.</div></div>')
+  document.querySelector('#contact').insertAdjacentHTML('beforeend', '<div id="contact-message"><div>Thanks! A human will get back to you shortly.</div></div>')
 }
 // DOM Manipulation
 function set_players(playerCount) {
-	var count = playerCount;
-	Array.prototype.forEach.call(playerElements, function(element) {
-		element.setAttribute('class', '');
-		if (count > 0) {
-			element.setAttribute('class', 'set');
-		}
-		count -= 1;
-	})
+  var count = playerCount;
+  Array.prototype.forEach.call(playerElements, function(element) {
+    element.setAttribute('class', '');
+    if (count > 0) {
+      element.setAttribute('class', 'set');
+    }
+    count -= 1;
+  })
 }
 
 function insert_player_feilds(playerCount){
@@ -122,11 +113,11 @@ function insert_player_feilds(playerCount){
     if(i <= playerCount) {
       if(el) continue;
       var newEl = defaultEl.cloneNode(true);
-	      newEl.id = "player-" + i + "-container";
-	      newEl.setAttribute("style", "display: block;");
-	      newEl.setAttribute("data-player-n", i);
-	      newEl.className = 'player-info';
-	      
+        newEl.id = "player-" + i + "-container";
+        newEl.setAttribute("style", "display: block;");
+        newEl.setAttribute("data-player-n", i);
+        newEl.className = 'player-info';
+        
         nameEl = newEl.querySelector('[name="name"]');
         nameEl.placeholder = 'Player ' + i + ' Name';
         nameEl.setAttribute ('required', 'true');
@@ -134,8 +125,8 @@ function insert_player_feilds(playerCount){
         emailEl = newEl.querySelector('[name="email"]');
         emailEl.setAttribute ('required', 'true');
 
-	      newEl.querySelector('[name="vec"]').id = 'player-' + i + '-vec';
-	      newEl.querySelector('[for="vec"]').setAttribute('for', 'player-' + i + '-vec');
+        newEl.querySelector('[name="vec"]').id = 'player-' + i + '-vec';
+        newEl.querySelector('[for="vec"]').setAttribute('for', 'player-' + i + '-vec');
       
       document.getElementById("player-fields").appendChild(newEl);
     } else if(el) {
@@ -145,31 +136,31 @@ function insert_player_feilds(playerCount){
 }
 
 function message(playerCount){
-	var message = "";
-	switch (playerCount) {
-		case '1':
-			message = "<div>Lone Wolf.</div>";
-			break;
-		case '2':
-			message = "<div>Dynamic Duo.</div>";
-			break;
-		case '3':
-			message = "<div>Musketeers.</div>";
-			break;
-		case '4':
-			message = "<div>Camping!</div>";
-			break;
-		case '5':
-			message = "<div>Perfect Prime.</div>";
-			break;
-	}
-	teamMessage.innerHTML = message;
+  var message = "";
+  switch (playerCount) {
+    case '1':
+      message = "<div>Lone Wolf.</div>";
+      break;
+    case '2':
+      message = "<div>Dynamic Duo.</div>";
+      break;
+    case '3':
+      message = "<div>Musketeers.</div>";
+      break;
+    case '4':
+      message = "<div>Camping!</div>";
+      break;
+    case '5':
+      message = "<div>Perfect Prime.</div>";
+      break;
+  }
+  teamMessage.innerHTML = message;
 }
 // END FUNCTIONS
 
 // LISTENERS
 Array.prototype.forEach.call(playerElements, function(element) {
-	element.addEventListener("click", handle_click);
+  element.addEventListener("click", handle_click);
 });
 
 document.querySelector('#entry-form').addEventListener('submit', handle_entry);
@@ -192,9 +183,20 @@ if ('createTouch' in document) {
   } catch (e) {}
 }
 
+// Initialise Smooth Scroll and Gumshoe for Navigation
+smoothScroll.init({
+  speed: 560, // Integer. How fast to complete the scroll in milliseconds
+  easing: 'easeInOutCubic', // Easing pattern to use
+  updateURL: true, // Boolean. If true, update the URL hash on scroll
+});
+gumshoe.init({
+  offset: 1, // Integer. How far to offset the scrolling anchor location in pixels
+});
+
 // Logs
 console.log('Forms');
 console.log('-------------------------------------------------');
 console.log('Players Object:');
+console.table(gumshoe);
 console.log(playerElements);
 console.log('-------------------------------------------------');

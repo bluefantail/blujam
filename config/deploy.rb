@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'blujm'
-set :repo_url, 'git@github.com:bluefantail/blujm.git'
+set :repo_url, 'git@github.com:bluefantail/blujam.git'
 
 set :passenger_roles, :app
 
@@ -21,6 +21,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 set :slack_webhook, 'https://hooks.slack.com/services/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'
 set :slack_team, "golden-eagle"
-set :slack_channel, '#blujm'
+set :slack_channel, '#blujam'
 
 after 'deploy:publishing', 'deploy:restart'
